@@ -1,0 +1,40 @@
+.list_item {
+    list-style-type: none;
+    margin-bottom: 50px;
+}
+
+.list_item.inverse {
+    margin-bottom: 20px;
+
+}
+
+.list_item.inverse a {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.list_item h5 {
+    color: #000000;
+    font-family: 'JostSemiBold';
+    font-size: 1.1rem;
+}
+
+.list_item a {
+    text-decoration: none;
+}
+
+.list_item img {
+    width: 100%;
+}
+
+@media (min-width:768px) {
+    .list_item {
+        flex-basis: 48.5%;
+    }
+}
+
+@media (min-width:1024px) {
+    .list_item {
+        flex-basis: 32%;
+    }
+}

@@ -1,0 +1,92 @@
+.main {
+    padding: 20px;
+}
+
+.h1 {
+    font-family: 'JostSemiBold';
+    font-size: 2.5rem;
+}
+
+.nav {
+    padding: 10px 0;
+}
+
+.nav ul {
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.nav li {
+    list-style-type: none;
+    text-align: center;
+    padding: 0 10px;
+    line-height: 3;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #949494;
+    font-size: 0.9rem;
+}
+
+.main p {
+    text-align: center;
+}
+
+.main p a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #949494;
+}
+
+@media (min-width:768px) {
+    .main {
+        padding: 20px 30px;
+    }
+
+    .h1 {
+        width: 65%;
+        font-size: 3rem;
+        word-spacing: 3px;
+    }
+
+    .nav ul {
+        justify-content: center;
+    }
+
+    .nav a {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width:1024px) {
+    .main {
+        padding: 20px 50px;
+    }
+
+    .h1 {
+        padding-bottom: 50px;
+        font-size: 3.4rem;
+    }
+
+    .nav a {
+        font-size: 1.3rem;
+    }
+}
+
+@media (min-width:1240px) {
+    .h1 {
+        width: 52%;
+        font-size: 4.5rem;
+        word-spacing: 3px;
+    }
+
+    .nav li {
+        padding: 0 20px;
+    }
+
+    .main {
+        padding: 20px 120px;
+    }
+}

@@ -1,0 +1,38 @@
+@font-face {
+    font-family: "JostLight";
+    /*Can be any text*/
+    src: local("JostLight"),
+        url("./fonts/Jost/Jost-Light.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "JostRegular";
+    /*Can be any text*/
+    src: local("JostRegular"),
+        url("./fonts/Jost/Jost-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "JostMedium";
+    /*Can be any text*/
+    src: local("JostLight"),
+        url("./fonts/Jost/Jost-Medium.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "JostSemiBold";
+    /*Can be any text*/
+    src: local("JostSemiBold"),
+        url("./fonts/Jost/Jost-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "JostBold";
+    /*Can be any text*/
+    src: local("JostBold"),
+        url("./fonts/Jost/Jost-Bold.ttf") format("truetype");
+}
+
+body {
+    font-family: "JostRegular";
+}

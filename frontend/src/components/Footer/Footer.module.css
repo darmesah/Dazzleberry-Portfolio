@@ -1,0 +1,43 @@
+.container {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    color: #949494;
+}
+
+.container a {
+    color: #949494;
+    text-decoration: none;
+}
+
+@media (min-width:768px) {
+    .container {
+        padding: 20px 50px;
+        justify-content: start;
+    }
+
+    .privacy p {
+        padding-right: 150px;
+    }
+}
+
+@media (min-width:1024px) {
+    .container {
+        padding: 20px 50px;
+        justify-content: space-between;
+    }
+
+    .social {
+        display: flex;
+    }
+
+    .social p {
+        padding-right: 30px;
+    }
+}
+
+@media (min-width:1400px) {
+    .container {
+        padding: 20px 100px;
+    }
+}

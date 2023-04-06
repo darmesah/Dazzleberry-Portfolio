@@ -1,0 +1,59 @@
+.container {
+    padding: 90px 20px;
+}
+
+.container h5 {
+    font-family: 'JostRegular';
+    padding-left: 5px;
+    margin-bottom: 0;
+}
+
+.container h1 {
+    font-family: 'JostSemiBold';
+    font-size: 3rem;
+    margin-top: 0;
+    padding-bottom: 40px;
+}
+
+.container p {
+    font-family: 'JostMedium';
+    width: 70%;
+}
+
+@media (min-width:768px) {
+    .container {
+        padding: 130px 50px;
+    }
+
+    .container p {
+        width: 50%;
+    }
+}
+
+@media (min-width:1024px) {
+    .container {
+        padding: 120px 100px;
+    }
+
+    .container h5 {
+        font-size: 2rem;
+        padding-left: 5px;
+    }
+
+    .container h1 {
+        font-size: 5rem;
+    }
+
+    .container p {
+        width: 40%;
+        font-size: 1.3rem;
+    }
+}
+
+@media (min-width:1400px) {
+
+
+    .container p {
+        width: 37%;
+    }
+}

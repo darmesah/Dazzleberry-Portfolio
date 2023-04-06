@@ -1,0 +1,28 @@
+.all_cont h4 {
+    font-family: 'JostSemiBold';
+    font-size: 1.2rem;
+}
+
+.sort_cont {
+    display: flex;
+    justify-content: center;
+}
+
+.sort_cont p {
+    padding-right: 20px;
+}
+
+@media (min-width:1240px) {
+    .all_cont {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .all_cont h4 {
+        margin-top: 0;
+    }
+
+    .all_cont p {
+        margin-top: 0;
+    }
+}

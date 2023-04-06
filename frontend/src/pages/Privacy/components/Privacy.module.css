@@ -1,0 +1,95 @@
+.container {
+    padding: 20px 20px 100px 20px;
+}
+
+.container p {
+    font-family: 'JostMedium';
+    width: 95%;
+    line-height: 1.7;
+}
+
+.header h1 {
+    font-family: 'JostSemiBold';
+    font-size: 2.7rem;
+    margin-bottom: 0;
+}
+
+.header p {
+    margin-top: 6px;
+    color: #949494;
+    font-size: 1.2rem;
+    word-spacing: 1.9px;
+    font-family: 'JostRegular';
+    padding-bottom: 70px;
+}
+
+.header_text p {
+    padding-bottom: 50px;
+}
+
+.header_text {
+    padding-bottom: 20px;
+}
+
+.content {
+    padding-bottom: 50px;
+}
+
+.content h2 {
+    font-family: 'JostRegular';
+    font-size: 2.4rem;
+    line-height: 1.15;
+    width: 80%;
+}
+
+.second {
+    padding-top: 40px;
+}
+
+@media (min-width:768px) {
+    .container p {
+        width: 60%;
+    }
+
+    .container {
+        padding: 20px 30px 100px 30px;
+    }
+}
+
+@media (min-width:1024px) {
+    .container {
+        padding: 20px 50px 100px 50px;
+    }
+
+    .header h1 {
+        font-size: 3.5rem;
+    }
+
+    .header p {
+        padding-bottom: 100px;
+    }
+
+    .header_text {
+        padding-bottom: 10px;
+    }
+
+    .container p {
+        width: 50%;
+        font-size: 1.1rem;
+    }
+}
+
+@media (min-width:1224px) {
+    .container {
+        padding: 20px 100px 100px 100px;
+    }
+
+    .header h1 {
+        font-size: 4.5rem;
+    }
+
+
+    .container p {
+        width: 36%;
+    }
+}

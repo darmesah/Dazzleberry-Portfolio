@@ -1,0 +1,28 @@
+.container {
+    padding: 25px;
+}
+
+.container h1 {
+    font-family: 'JostSemiBold';
+    font-size: 3rem;
+}
+
+@media (min-width:768px) {
+    .container {
+        padding: 25px 50px;
+    }
+
+    .container h1 {
+        font-size: 3.5rem;
+    }
+}
+
+@media (min-width:1240px) {
+    .container {
+        padding: 25px 130px;
+    }
+
+    .container h1 {
+        font-size: 4.5rem;
+    }
+}

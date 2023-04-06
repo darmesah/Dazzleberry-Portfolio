@@ -1,0 +1,11 @@
+.list_cont {
+    padding-left: 0;
+}
+
+@media (min-width:768px) {
+    .list_cont {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+}

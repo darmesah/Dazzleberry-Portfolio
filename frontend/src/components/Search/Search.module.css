@@ -1,0 +1,122 @@
+.container {
+    z-index: 100;
+    position: fixed;
+    width: 91%;
+    top: 0;
+    padding: 40px 20px 120px 20px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+.cancel {
+    text-align: right;
+    padding: 0 5px 60px 0;
+}
+
+.container form {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #CCD3DA;
+}
+
+.cancel img {
+    width: 15px;
+}
+
+.container input {
+    border: none;
+    font-size: 1rem;
+    color: #6f6f6f;
+    width: 100%;
+}
+
+.container input:focus {
+    outline: none;
+}
+
+.container input::placeholder {
+    font-size: 1rem;
+    color: #CCD3DA;
+}
+
+.container button {
+    border: none;
+    background: none;
+}
+
+.container button:disabled {
+    cursor: not-allowed;
+}
+
+.container button img {
+    width: 15px;
+}
+
+.error_text {
+    color: red;
+}
+
+@media (min-width:768px) {
+    .container {
+        width: 95%;
+    }
+
+    .form {
+        padding: 0 30px;
+    }
+
+    .cancel {
+        padding: 0 35px 60px 0;
+    }
+}
+
+@media (min-width:1024px) {
+    .container {
+        width: 97%;
+    }
+
+    .form {
+        padding: 0 50px;
+    }
+
+    .cancel {
+        padding: 0 55px 60px 0;
+    }
+
+    .container input::placeholder {
+        font-size: 1.3rem;
+    }
+
+    .container input {
+        font-size: 1.3rem;
+    }
+}
+
+@media (min-width:1224px) {
+    .container {
+        width: 98%;
+    }
+
+    .form {
+        padding: 0 80px;
+    }
+
+    .cancel {
+        padding: 0 85px 60px 0;
+    }
+
+    .container input::placeholder {
+        font-size: 1.5rem;
+    }
+
+    .container input {
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-width:2000px) {
+    .container {
+        width: 99%;
+    }
+}
