@@ -3,7 +3,7 @@
 }
 
 .h1 {
-    font-family: 'JostSemiBold';
+    font-family: "JostSemiBold";
     font-size: 2.5rem;
 }
 
@@ -40,7 +40,7 @@
     color: #949494;
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
     .main {
         padding: 20px 30px;
     }
@@ -60,7 +60,7 @@
     }
 }
 
-@media (min-width:1024px) {
+@media (min-width: 1024px) {
     .main {
         padding: 20px 50px;
     }
@@ -70,12 +70,16 @@
         font-size: 3.4rem;
     }
 
+    .nav ul {
+        justify-content: left;
+    }
+
     .nav a {
         font-size: 1.3rem;
     }
 }
 
-@media (min-width:1240px) {
+@media (min-width: 1240px) {
     .h1 {
         width: 52%;
         font-size: 4.5rem;
@@ -83,7 +87,7 @@
     }
 
     .nav li {
-        padding: 0 20px;
+        padding: 0 10px;
     }
 
     .main {

@@ -6,6 +6,7 @@ import {
 
 import './App.css';
 
+
 import RootLayout from './pages/Root';
 import Error from './pages/Error/Error';
 import Home from './pages/Home/Home';
@@ -17,6 +18,7 @@ import Industry from './pages/Work/Industry';
 import Service from './pages/Work/Service';
 import Search from './pages/Search/Search';
 import Privacy from './pages/Privacy/Privacy';
+import WorkItem from './pages/WorkItem/WorkItem';
 
 const App = () => {
   return (
@@ -32,6 +34,7 @@ const App = () => {
             { path: 'contact', element: <Contact /> },
             { path: 'search', element: <Search /> },
             { path: 'privacy-policy', element: <Privacy /> },
+            { path: 'work-item/:item', element: <WorkItem /> },
             {
               path: 'work',
               element: <WorkRoot />,
