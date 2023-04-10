@@ -1,33 +1,34 @@
-export const industyData = [
+const allItems = [
   {
-    title: "arts & culture",
+    title: "Behance",
+    link: "behance",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
   },
   {
-    title: "banking & finance",
+    title: "Behance",
+    link: "behance",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
   },
   {
-    title: "civic & public",
+    title: "Behance",
+    link: "behance",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
+  },
+  {
+    title: "Behance",
+    link: "behance",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
+  },
+  {
+    title: "Behance",
+    link: "behance",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
   },
 ];
 
-export const serviceData = [
-  {
-    title: "advertising & marketing",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
-  },
-];
-
-export const allData = [
-  {
-    title: "behance",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
-  },
-];
+export default allItems;

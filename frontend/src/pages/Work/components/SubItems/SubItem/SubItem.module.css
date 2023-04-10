@@ -17,7 +17,7 @@
     color: #000000;
     font-family: 'JostSemiBold';
     font-size: 1.1rem;
-    text-transform: capitalize;
+    margin: 10px;
 }
 
 .list_item a {
@@ -30,12 +30,13 @@
 
 @media (min-width:768px) {
     .list_item {
-        flex-basis: 48.5%;
+        flex-basis: 47%;
+        padding-right: 15px;
     }
 }
 
 @media (min-width:1024px) {
     .list_item {
-        flex-basis: 32%;
+        flex-basis: 31%;
     }
 }

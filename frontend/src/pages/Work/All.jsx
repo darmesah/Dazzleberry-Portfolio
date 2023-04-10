@@ -1,9 +1,9 @@
-import { ScrollRestoration } from 'react-router-dom';
+import { ScrollRestoration } from "react-router-dom";
 
-import { allData } from './components/data';
-import WorkList from './components/WorkList/WorkList';
+import { allData } from "./components/data";
+import WorkList from "./components/WorkList/WorkList";
 
-import classes from './components/All.module.css';
+import classes from "./components/All.module.css";
 
 const All = () => {
   return (

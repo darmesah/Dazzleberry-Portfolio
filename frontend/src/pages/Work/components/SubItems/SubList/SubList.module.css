@@ -1,0 +1,37 @@
+.list_cont {
+    padding: 10px 20px 20px 20px;
+}
+
+.list_cont h3 {
+    font-family: 'JostSemiBold';
+    font-size: 1.3rem;
+    padding-bottom: 30px;
+    flex-basis: 100%;
+    text-transform: capitalize;
+}
+
+
+
+@media (min-width:768px) {
+    .list_cont {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 20px 30px;
+    }
+}
+
+@media (min-width:1024px) {
+    .list_cont {
+        padding: 20px 50px;
+    }
+
+    .list_cont h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-width:1224px) {
+    .list_cont {
+        padding: 20px 100px;
+    }
+}
