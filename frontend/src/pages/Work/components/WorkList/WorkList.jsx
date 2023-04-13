@@ -1,6 +1,6 @@
-import WorkItem from '../WorkItem/WorkItem';
+import WorkItem from "../WorkItem/WorkItem";
 
-import classes from './WorkList.module.css';
+import classes from "./WorkList.module.css";
 
 const WorkList = ({ items, inverse }) => {
   return (

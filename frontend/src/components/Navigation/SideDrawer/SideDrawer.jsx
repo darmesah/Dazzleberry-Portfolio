@@ -1,8 +1,8 @@
-import { useRef } from 'react';
-import { CSSTransition } from 'react-transition-group';
+import { useRef } from "react";
+import { CSSTransition } from "react-transition-group";
 
-import './Animation.css';
-import classes from './SideDrawer.module.css';
+import "./Animation.css";
+import classes from "./SideDrawer.module.css";
 
 const SideDrawer = ({ children, show, onClick }) => {
   const nodeRef = useRef(null);
@@ -13,11 +13,12 @@ const SideDrawer = ({ children, show, onClick }) => {
       in={show}
       timeout={200}
       classNames="slide-in-left"
+      mountOnEnter
       unmountOnExit
     >
       <aside
         ref={nodeRef}
-        className={`${classes.side_drawer} ${show ? classes.slide : ''}`}
+        className={`${classes.side_drawer} ${show ? classes.slide : ""}`}
         onClick={onClick}
       >
         {children}

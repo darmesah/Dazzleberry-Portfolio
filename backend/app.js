@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
+const cors = require("cors");
 require("dotenv").config();
 
 const MONGODB_URI = process.env.MONGODB_URL;
@@ -35,6 +36,7 @@ const fileFilter = (req, file, cb) => {
 };
 
 app.use(bodyParser.json());
+app.use(cors());
 app.use(multer({ storage: fileStorage, fileFilter }).array("image", 12));
 app.use("/images", express.static(path.join(__dirname, "images")));
 

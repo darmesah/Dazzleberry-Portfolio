@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import classes from './components/Home.module.css';
-import HomeDesignList from './components/HomeDesignsList';
+import classes from "./components/Home.module.css";
+import HomeDesignList from "./components/HomeDesignsList";
 
 const Home = () => {
   return (

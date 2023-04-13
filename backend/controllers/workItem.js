@@ -3,7 +3,7 @@ const WorkItem = require("../models/workItem");
 exports.getWorkItems = async (req, res, next) => {
   const keyword = req.query.keyword;
   const currentPage = req.query.page || 1;
-  const perPage = 2;
+  const perPage = 5;
 
   try {
     if (keyword) {
@@ -38,7 +38,7 @@ exports.getWorkItems = async (req, res, next) => {
         return res.status(404).json({ message: "No work item found" });
       }
 
-      res.status(200).json({
+      return res.status(200).json({
         message: "Fetched work items successfully",
         workItems,
         totalWorkItems,
@@ -78,18 +78,23 @@ exports.getWorkItem = async (req, res, next) => {
 exports.getServices = async (req, res, next) => {
   try {
     const services = await WorkItem.find().select("-_id service");
+    console.log(services);
     const servicesList = services.map((service) => service.service).flat();
-    const allServices = [...new Set(servicesList)];
+    const allServices = [...new Set(servicesList)].sort();
 
     let imgServices = [];
 
     for (let i = 0; i < allServices.length; i++) {
-      const availableService = await WorkItem.findOne({
+      const availableService = await WorkItem.find({
         service: allServices[i],
       });
+      const gottenService = availableService.map(
+        (gottenServiceImg) => gottenServiceImg.imageUrl[0]
+      );
       const availableServiceImg = {
-        service: allServices[i],
-        image: availableService.imageUrl[Math.floor(Math.random() * 8)],
+        title: allServices[i],
+        image:
+          gottenService[Math.floor(Math.random() * availableService.length)],
       };
 
       imgServices.push(availableServiceImg);
@@ -113,17 +118,21 @@ exports.getIndustries = async (req, res, next) => {
     const industriesList = industries
       .map((industry) => industry.industry)
       .flat();
-    const allIndustries = [...new Set(industriesList)];
+    const allIndustries = [...new Set(industriesList)].sort();
 
     let imgIndustries = [];
 
     for (let i = 0; i < allIndustries.length; i++) {
-      const availableIndustry = await WorkItem.findOne({
+      const availableIndustry = await WorkItem.find({
         industry: allIndustries[i],
       });
+      const gottenIndustry = availableIndustry.map(
+        (gottenIndustryImg) => gottenIndustryImg.imageUrl[0]
+      );
       const availableIndustryImg = {
-        industry: allIndustries[i],
-        image: availableIndustry.imageUrl[Math.floor(Math.random() * 8)],
+        title: allIndustries[i],
+        image:
+          gottenIndustry[Math.floor(Math.random() * availableIndustry.length)],
       };
 
       imgIndustries.push(availableIndustryImg);

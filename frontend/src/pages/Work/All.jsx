@@ -1,11 +1,20 @@
-import { ScrollRestoration } from "react-router-dom";
+import {
+  Await,
+  defer,
+  json,
+  ScrollRestoration,
+  useLoaderData,
+} from "react-router-dom";
 
-import { allData } from "./components/data";
-import WorkList from "./components/WorkList/WorkList";
+import WorkList from "./components/WorkList/All/WorkList";
 
 import classes from "./components/All.module.css";
+import { Suspense } from "react";
+import Loading from "../../components/UIElements/Loading/Loading";
 
 const All = () => {
+  const { workItems } = useLoaderData();
+
   return (
     <>
       <div className={classes.all_cont}>
@@ -15,10 +24,41 @@ const All = () => {
           <p>ALPHABETICAL</p>
         </div>
       </div>
-      <WorkList items={allData} inverse={true} />
+      <Suspense fallback={<Loading />}>
+        <Await resolve={workItems}>
+          {(loadedWorkItems) => (
+            <WorkList items={loadedWorkItems} inverse={true} />
+          )}
+        </Await>
+      </Suspense>
+
       <ScrollRestoration />
     </>
   );
 };
 
 export default All;
+
+export const loadWorkItems = async () => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_URL}/workitems`
+  );
+
+  if (!response.ok) {
+    throw json(
+      { message: "Could not fetch workitems." },
+      {
+        status: 500,
+      }
+    );
+  } else {
+    const resData = await response.json();
+    return resData.workItems;
+  }
+};
+
+export const loader = () => {
+  return defer({
+    workItems: loadWorkItems(),
+  });
+};

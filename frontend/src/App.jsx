@@ -12,14 +12,22 @@ import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import WorkRoot from "./pages/Work/Root";
-import All from "./pages/Work/All";
-import Industry from "./pages/Work/Industry/Industry";
-import Service from "./pages/Work/Service/Service";
+import All, { loader as allLoader } from "./pages/Work/All";
+import Industry, {
+  loader as industriesLoader,
+} from "./pages/Work/Industry/Industry";
+import Service, {
+  loader as servicesLoader,
+} from "./pages/Work/Service/Service";
 import Search from "./pages/Search/Search";
 import Privacy from "./pages/Privacy/Privacy";
-import WorkItem from "./pages/WorkItem/WorkItem";
-import ServiceSub from "./pages/Work/Service/ServiceSub";
-import IndustrySub from "./pages/Work/Industry/IndustrySub";
+import WorkItem, { loader as workitemLoader } from "./pages/WorkItem/WorkItem";
+import ServiceSub, {
+  loader as serviceLoader,
+} from "./pages/Work/Service/ServiceSub";
+import IndustrySub, {
+  loader as industryLoader,
+} from "./pages/Work/Industry/IndustrySub";
 
 const App = () => {
   return (
@@ -35,7 +43,11 @@ const App = () => {
             { path: "contact", element: <Contact /> },
             { path: "search", element: <Search /> },
             { path: "privacy-policy", element: <Privacy /> },
-            { path: "work-item/:item", element: <WorkItem /> },
+            {
+              path: "work-item/:item",
+              element: <WorkItem />,
+              loader: workitemLoader,
+            },
             {
               path: "work",
               element: <WorkRoot />,
@@ -44,13 +56,33 @@ const App = () => {
                   index: true,
                   element: <Navigate to="/work/all" replace="true" />,
                 },
-                { path: "industry", element: <Industry /> },
-                { path: "service", element: <Service /> },
-                { path: "all", element: <All /> },
+                {
+                  path: "industry",
+                  element: <Industry />,
+                  loader: industriesLoader,
+                },
+                {
+                  path: "service",
+                  element: <Service />,
+                  loader: servicesLoader,
+                },
+                {
+                  path: "all",
+                  element: <All />,
+                  loader: allLoader,
+                },
               ],
             },
-            { path: "work/industry/:item", element: <IndustrySub /> },
-            { path: "work/service/:item", element: <ServiceSub /> },
+            {
+              path: "work/industry/:item",
+              element: <IndustrySub />,
+              loader: industryLoader,
+            },
+            {
+              path: "work/service/:item",
+              element: <ServiceSub />,
+              loader: serviceLoader,
+            },
           ],
         },
       ])}

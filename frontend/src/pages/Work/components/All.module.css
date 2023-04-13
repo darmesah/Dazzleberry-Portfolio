@@ -1,18 +1,19 @@
 .all_cont h4 {
     font-family: 'JostSemiBold';
     font-size: 1.2rem;
+    margin-bottom: 10px;
 }
 
 .sort_cont {
     display: flex;
-    justify-content: center;
+    justify-content: left;
 }
 
 .sort_cont p {
     padding-right: 20px;
 }
 
-@media (min-width:1240px) {
+@media (min-width:1024px) {
     .all_cont {
         display: flex;
         justify-content: space-between;

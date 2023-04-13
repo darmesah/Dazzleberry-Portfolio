@@ -5,7 +5,6 @@
 
 .list_item.inverse {
     margin-bottom: 20px;
-
 }
 
 .list_item.inverse a {
@@ -29,12 +28,35 @@
 
 @media (min-width:768px) {
     .list_item {
-        flex-basis: 48.5%;
+        flex-basis: 47.5%;
+        padding-right: 15px;
+        position: relative;
+        padding-bottom: 20px;
+    }
+
+    .list_item.inverse {
+        margin-bottom: 40px;
+    }
+
+    .list_item h5 {
+        position: absolute;
+        bottom: -50px;
     }
 }
 
 @media (min-width:1024px) {
     .list_item {
-        flex-basis: 32%;
+        flex-basis: 31.5%;
+    }
+
+    .list_item h5 {
+        position: absolute;
+        bottom: -30px;
+    }
+}
+
+@media (min-width:1240px) {
+    .list_item {
+        flex-basis: 23.5%;
     }
 }
