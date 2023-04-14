@@ -12,7 +12,7 @@ import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import WorkRoot from "./pages/Work/Root";
-import All, { loader as allLoader } from "./pages/Work/All";
+import All from "./pages/Work/All";
 import Industry, {
   loader as industriesLoader,
 } from "./pages/Work/Industry/Industry";
@@ -69,7 +69,6 @@ const App = () => {
                 {
                   path: "all",
                   element: <All />,
-                  loader: allLoader,
                 },
               ],
             },

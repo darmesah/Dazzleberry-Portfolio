@@ -48,11 +48,6 @@
     .list_item {
         flex-basis: 31.5%;
     }
-
-    .list_item h5 {
-        position: absolute;
-        bottom: -30px;
-    }
 }
 
 @media (min-width:1240px) {

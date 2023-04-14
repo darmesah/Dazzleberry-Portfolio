@@ -16,7 +16,7 @@ const WorkItem = () => {
     <>
       <Suspense fallback={<Loading />}>
         <Await resolve={workitem}>
-          {(data) => <Item items={data.workItem} />}
+          {(data) => <Item items={data.workItem} next={data.nextWorkItem} />}
         </Await>
       </Suspense>
       <ScrollRestoration />

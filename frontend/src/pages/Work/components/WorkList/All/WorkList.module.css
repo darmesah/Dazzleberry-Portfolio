@@ -2,6 +2,27 @@
     padding-left: 0;
 }
 
+.loading {
+    width: 100%;
+    text-align: center;
+}
+
+.load_more {
+    width: 100%;
+    text-align: center;
+    margin: 50px 0 0 0;
+}
+
+.load_more button {
+    border: none;
+    border-radius: 5px;
+    background: #002547;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
 @media (min-width:768px) {
     .list_cont {
         display: flex;

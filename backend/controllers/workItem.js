@@ -2,8 +2,9 @@ const WorkItem = require("../models/workItem");
 
 exports.getWorkItems = async (req, res, next) => {
   const keyword = req.query.keyword;
+  const sort = req.query.sort;
   const currentPage = req.query.page || 1;
-  const perPage = 5;
+  const perPage = 2;
 
   try {
     if (keyword) {
@@ -30,7 +31,8 @@ exports.getWorkItems = async (req, res, next) => {
         .json({ message: "Searched work items successfully", workItems });
     } else {
       const totalWorkItems = await WorkItem.find().countDocuments();
-      const workItems = await WorkItem.find()
+      const workItems = await WorkItem.find({})
+        .sort(sort === "asc" ? { title: 1 } : "")
         .skip((currentPage - 1) * perPage)
         .limit(perPage);
 
@@ -38,11 +40,13 @@ exports.getWorkItems = async (req, res, next) => {
         return res.status(404).json({ message: "No work item found" });
       }
 
-      return res.status(200).json({
-        message: "Fetched work items successfully",
-        workItems,
-        totalWorkItems,
-      });
+      setTimeout(() => {
+        return res.status(200).json({
+          message: "Fetched work items successfully",
+          workItems,
+          totalWorkItems,
+        });
+      }, 2000);
     }
   } catch (error) {
     if (!error.statusCode) {
@@ -64,9 +68,17 @@ exports.getWorkItem = async (req, res, next) => {
       throw error;
     }
 
-    res
-      .status(200)
-      .json({ message: "Fetched work item successfully", workItem });
+    const allWorkItem = await WorkItem.find().select("-imageUrl -description");
+    const workItemId = allWorkItem.findIndex((item) => item.id == workItem.id);
+    const nextWorkItemId =
+      allWorkItem.length - 1 === workItemId ? 0 : workItemId + 1;
+    const nextWorkItem = allWorkItem[nextWorkItemId];
+
+    res.status(200).json({
+      message: "Fetched work item successfully",
+      workItem,
+      nextWorkItem,
+    });
   } catch (error) {
     if (!error.statusCode) {
       error.statusCode = 500;

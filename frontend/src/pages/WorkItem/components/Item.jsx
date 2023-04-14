@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import classes from "./Item.module.css";
 
-const Item = ({ items }) => {
+const Item = ({ items, next }) => {
   const { title, workDesc, imageUrl, service, description, industry } = items;
   const service_industry = [...service, ...industry];
 
@@ -69,21 +70,23 @@ const Item = ({ items }) => {
           alt="image_8"
         />
       </div>
-      {/* <div className={classes.next}>
+      <div className={classes.next}>
         <p className={classes.next_p}>Next Project</p>
-        <div className={classes.header}>
-          <div className={classes.header_1}>
-            <h1>{title}</h1>
-            {service.map((item, index) => (
-              <p key={index}>
-                {item}
-                {index < service.length - 1 && ", "}
-              </p>
-            ))}
+        <Link to={`/work-item/${next._id}`}>
+          <div className={classes.header}>
+            <div className={classes.header_1}>
+              <h1>{next.title}</h1>
+              {service.map((item, index) => (
+                <p key={index}>
+                  {item}
+                  {index < service.length - 1 && ", "}
+                </p>
+              ))}
+            </div>
+            <div className={classes.header_2}>{next.workDesc}</div>
           </div>
-          <div className={classes.header_2}>{workDesc}</div>
-        </div>
-      </div> */}
+        </Link>
+      </div>
     </main>
   );
 };
