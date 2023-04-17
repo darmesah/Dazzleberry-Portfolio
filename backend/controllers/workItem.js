@@ -8,27 +8,33 @@ exports.getWorkItems = async (req, res, next) => {
 
   try {
     if (keyword) {
-      console.log(keyword);
+      if (keyword.length < 3) {
+        return res.status(200).json({
+          message: "No work item with that keyword found",
+          workItems: [],
+        });
+      } else {
+        const workItems = await WorkItem.find({
+          $or: [
+            { title: { $regex: keyword, $options: "i" } },
+            { workDesc: { $regex: keyword, $options: "i" } },
+            { service: { $regex: keyword, $options: "i" } },
+            { description: { $regex: keyword, $options: "i" } },
+            { industry: { $regex: keyword, $options: "i" } },
+          ],
+        });
 
-      const workItems = await WorkItem.find({
-        $or: [
-          { title: { $regex: keyword, $options: "i" } },
-          { workDesc: { $regex: keyword, $options: "i" } },
-          { service: { $regex: keyword, $options: "i" } },
-          { description: { $regex: keyword, $options: "i" } },
-          { industry: { $regex: keyword, $options: "i" } },
-        ],
-      });
+        if (workItems.length === 0) {
+          return res.status(200).json({
+            message: "No work item with that keyword found",
+            workItems: [],
+          });
+        }
 
-      if (workItems.length === 0) {
-        return res
-          .status(404)
-          .json({ message: "No work item with that keyword found" });
+        res
+          .status(200)
+          .json({ message: "Searched work items successfully", workItems });
       }
-
-      res
-        .status(200)
-        .json({ message: "Searched work items successfully", workItems });
     } else {
       const totalWorkItems = await WorkItem.find().countDocuments();
       const workItems = await WorkItem.find({})
@@ -40,13 +46,11 @@ exports.getWorkItems = async (req, res, next) => {
         return res.status(404).json({ message: "No work item found" });
       }
 
-      setTimeout(() => {
-        return res.status(200).json({
-          message: "Fetched work items successfully",
-          workItems,
-          totalWorkItems,
-        });
-      }, 2000);
+      res.status(200).json({
+        message: "Fetched work items successfully",
+        workItems,
+        totalWorkItems,
+      });
     }
   } catch (error) {
     if (!error.statusCode) {
@@ -90,7 +94,6 @@ exports.getWorkItem = async (req, res, next) => {
 exports.getServices = async (req, res, next) => {
   try {
     const services = await WorkItem.find().select("-_id service");
-    console.log(services);
     const servicesList = services.map((service) => service.service).flat();
     const allServices = [...new Set(servicesList)].sort();
 

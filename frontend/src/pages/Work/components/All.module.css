@@ -11,6 +11,11 @@
 
 .sort_cont p {
     padding-right: 20px;
+    cursor: pointer;
+}
+
+.bold {
+    font-family: 'JostBold';
 }
 
 @media (min-width:1024px) {

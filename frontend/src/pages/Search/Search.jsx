@@ -1,13 +1,29 @@
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import {
+  Await,
+  Link,
+  ScrollRestoration,
+  defer,
+  useLoaderData,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 
-import search from './components/images/search.svg';
-import data from './components/data';
+import searchImg from "./components/images/search.svg";
 
-import classes from './components/Search.module.css';
-import useInput from '../../hooks/use-input';
+import classes from "./components/Search.module.css";
+import useInput from "../../hooks/use-input";
+import { Suspense } from "react";
+import Loading from "../../components/UIElements/Loading/Loading";
 
 const Search = () => {
-  const isNotEmpty = (value) => value.trim() !== '';
+  const navigate = useNavigate();
+
+  const { search } = useLoaderData();
+  const [searchParams] = useSearchParams();
+
+  const param = searchParams.get("keyword");
+
+  const isNotEmpty = (value) => value.trim() !== "";
 
   const {
     value: textValue,
@@ -15,19 +31,10 @@ const Search = () => {
     hasError: textHasError,
     valueChangeHandler: textChangedHandler,
     inputBlurHandler: textBlurHandler,
-    reset: resetText,
-  } = useInput(isNotEmpty);
-
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
-
-  const param = searchParams.get('keyword');
-  console.log(param);
+  } = useInput(isNotEmpty, param);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    resetText();
 
     navigate(`?keyword=${textValue}`);
   };
@@ -44,40 +51,70 @@ const Search = () => {
           placeholder="Search work..."
         />
         <button disabled={!enteredTextIsValid} type="submit">
-          <img src={search} alt="search" />
+          <img src={searchImg} alt="search" />
         </button>
       </form>
       {textHasError && (
         <p className={classes.error_text}>Please enter a valid input</p>
       )}
-      {param && (
-        <div className={classes.content}>
-          {data.length === 0 && (
-            <p className={classes.first}>
-              <span>0 results</span> for {param}
-            </p>
+
+      <Suspense fallback={<Loading />}>
+        <Await resolve={search}>
+          {(data) => (
+            <main>
+              {param && (
+                <div className={classes.content}>
+                  {data.workItems.length === 0 && (
+                    <p className={classes.first}>
+                      <span>0 results</span> for {param}
+                    </p>
+                  )}
+                  {data.workItems.length > 0 && (
+                    <>
+                      <p className={classes.first}>
+                        <span>{data.workItems.length} result(s)</span> for{" "}
+                        {param}
+                      </p>
+                      <div className={classes.search_flex}>
+                        {data.workItems.map((item, index) => (
+                          <div key={index} className={classes.item}>
+                            <Link to={`/work-item/${item._id}`}>
+                              <img
+                                src={`${process.env.REACT_APP_BACKEND_IMAGES}/${item.imageUrl[0]}`}
+                                alt={item.title}
+                              />
+                              <p>{item.title}</p>
+                            </Link>
+                          </div>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
+            </main>
           )}
-          {data.length > 0 && (
-            <>
-              <p className={classes.first}>
-                <span>7 results</span> for {param}
-              </p>
-              <div className={classes.search_flex}>
-                {data.map((item, index) => (
-                  <div key={index} className={classes.item}>
-                    <Link>
-                      <img src={item.image} alt={item.title} />
-                      <p>{item.title}</p>
-                    </Link>
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
-        </div>
-      )}
+        </Await>
+      </Suspense>
+      <ScrollRestoration />
     </main>
   );
 };
 
 export default Search;
+
+export const loader = async ({ request }) => {
+  const url = new URL(request.url);
+  const keyword = url.searchParams.get("keyword");
+
+  const search = fetch(
+    `${process.env.REACT_APP_BACKEND_URL}/workitems?keyword=${keyword}`
+  ).then((res) => {
+    if (!res.ok) {
+      return { error: "Something went wrong" };
+    }
+    return res.json();
+  });
+
+  return defer({ search });
+};

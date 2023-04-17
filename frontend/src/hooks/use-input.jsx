@@ -1,28 +1,28 @@
-import { useReducer } from 'react';
+import { useReducer } from "react";
 
-const initialInputState = {
-  value: '',
+let initialInputState = {
+  value: "",
   isTouched: false,
 };
 
 const inputStateReducer = (state, action) => {
-  if (action.type === 'INPUT') {
+  if (action.type === "INPUT") {
     return {
       value: action.value,
       isTouched: state.isTouched,
     };
   }
 
-  if (action.type === 'BLUR') {
+  if (action.type === "BLUR") {
     return {
       value: state.value,
       isTouched: true,
     };
   }
 
-  if (action.type === 'RESET') {
+  if (action.type === "RESET") {
     return {
-      value: '',
+      value: "",
       isTouched: false,
     };
   }
@@ -30,7 +30,9 @@ const inputStateReducer = (state, action) => {
   return initialInputState;
 };
 
-const useInput = (validateValue) => {
+const useInput = (validateValue, initValue) => {
+  initialInputState.value = initValue;
+
   const [inputState, dispatch] = useReducer(
     inputStateReducer,
     initialInputState
@@ -40,15 +42,15 @@ const useInput = (validateValue) => {
   const hasError = !valueIsValid && inputState.isTouched;
 
   const valueChangeHandler = (e) => {
-    dispatch({ type: 'INPUT', value: e.target.value });
+    dispatch({ type: "INPUT", value: e.target.value });
   };
 
   const inputBlurHandler = () => {
-    dispatch({ type: 'BLUR' });
+    dispatch({ type: "BLUR" });
   };
 
   const reset = () => {
-    dispatch({ type: 'RESET' });
+    dispatch({ type: "RESET" });
   };
 
   return {

@@ -19,7 +19,7 @@ import Industry, {
 import Service, {
   loader as servicesLoader,
 } from "./pages/Work/Service/Service";
-import Search from "./pages/Search/Search";
+import Search, { loader as searchLoader } from "./pages/Search/Search";
 import Privacy from "./pages/Privacy/Privacy";
 import WorkItem, { loader as workitemLoader } from "./pages/WorkItem/WorkItem";
 import ServiceSub, {
@@ -41,7 +41,11 @@ const App = () => {
             { index: true, element: <Home /> },
             { path: "about", element: <About /> },
             { path: "contact", element: <Contact /> },
-            { path: "search", element: <Search /> },
+            {
+              path: "search",
+              element: <Search />,
+              loader: searchLoader,
+            },
             { path: "privacy-policy", element: <Privacy /> },
             {
               path: "work-item/:item",

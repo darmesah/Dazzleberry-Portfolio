@@ -1,16 +1,16 @@
-import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
-import search from './images/search.svg';
-import cancel from './images/cancel.svg';
-import { uiActions } from '../../store/ui-slice';
+import search from "./images/search.svg";
+import cancel from "./images/cancel.svg";
+import { uiActions } from "../../store/ui-slice";
 
-import classes from './Search.module.css';
-import Modal from '../UIElements/Modal/Modal';
-import useInput from '../../hooks/use-input';
+import classes from "./Search.module.css";
+import Modal from "../UIElements/Modal/Modal";
+import useInput from "../../hooks/use-input";
 
 const Search = () => {
-  const isNotEmpty = (value) => value.trim() !== '';
+  const isNotEmpty = (value) => value.trim() !== "";
 
   const {
     value: textValue,
@@ -19,7 +19,7 @@ const Search = () => {
     valueChangeHandler: textChangedHandler,
     inputBlurHandler: textBlurHandler,
     reset: resetText,
-  } = useInput(isNotEmpty);
+  } = useInput(isNotEmpty, "");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

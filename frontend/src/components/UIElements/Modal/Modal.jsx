@@ -1,8 +1,8 @@
-import { useRef } from 'react';
-import { CSSTransition } from 'react-transition-group';
+import { useRef } from "react";
+import { CSSTransition } from "react-transition-group";
 
-import Backdrop from '../BackDrop/BackDrop';
-import './Modal.css';
+import Backdrop from "../BackDrop/BackDrop";
+import "./Modal.css";
 
 const Modal = (props) => {
   const nodeRef = useRef(null);
@@ -15,7 +15,7 @@ const Modal = (props) => {
         in={props.show}
         mountOnEnter
         unmountOnExit
-        timeout={200}
+        timeout={300}
         classNames="modal"
       >
         <div ref={nodeRef}>{props.children}</div>

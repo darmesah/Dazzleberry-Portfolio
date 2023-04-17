@@ -1,9 +1,9 @@
-import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-import search from '../images/search.svg';
-import classes from './NavLinks.module.css';
-import { uiActions } from '../../../store/ui-slice';
+import search from "../images/search.svg";
+import classes from "./NavLinks.module.css";
+import { uiActions } from "../../../store/ui-slice";
 
 const Navlinks = () => {
   const dispatch = useDispatch();
