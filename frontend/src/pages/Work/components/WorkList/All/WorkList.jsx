@@ -17,11 +17,43 @@ const WorkList = ({ inverse }) => {
   const sort = useSelector((state) => state.all.sort);
   const workItemsData = useSelector((state) => state.all.workItems);
 
+  // useEffect(() => {
+  //   dispatch(allActions.loadWorkItems());
+  //   dispatch(allActions.test());
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
+  // useEffect(() => {
+  //   return () => {
+  //     dispatch(allActions.loadWorkItems());
+  //   };
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setIsLoading(true);
+  //     const response = await fetch(
+  //       `${process.env.REACT_APP_BACKEND_URL}/workitems?page=${page}&sort=${sort}`
+  //     );
+  //     const data = await response.json();
+  //     setTotal(data.totalWorkItems);
+  //     dispatch(allActions.setWorkItems(data.workItems));
+  //     setIsLoading(false);
+  //   };
+
+  //   fetchData();
+  // }, [page, sort, dispatch]);
+
+  // const loadMoreHandler = () => {
+  //   dispatch(allActions.loadMore());
+  // };
+
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/workitems?page=${page}&sort=${sort}`
+        `${process.env.REACT_APP_BACKEND_URL}/workitems?page=${1}&sort=${sort}`
       );
       const data = await response.json();
       setTotal(data.totalWorkItems);
@@ -30,10 +62,22 @@ const WorkList = ({ inverse }) => {
     };
 
     fetchData();
-  }, [page, sort, dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sort]);
 
   const loadMoreHandler = () => {
-    dispatch(allActions.loadMore());
+    const fetchData = async () => {
+      setIsLoading(true);
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/workitems?page=${page}&sort=${sort}`
+      );
+      const data = await response.json();
+      setTotal(data.totalWorkItems);
+      dispatch(allActions.loadMore(data.workItems));
+      setIsLoading(false);
+    };
+
+    fetchData();
   };
 
   return (
@@ -50,7 +94,7 @@ const WorkList = ({ inverse }) => {
         ? ""
         : !isLoading && (
             <div className={classes.load_more}>
-              <button onClick={loadMoreHandler}>Load More</button>
+              <p onClick={loadMoreHandler}>Load More</p>
             </div>
           )}
     </ul>

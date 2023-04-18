@@ -1,6 +1,6 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
-import classes from './WorkNavigation.module.css';
+import classes from "./WorkNavigation.module.css";
 
 const WorkNavigation = () => {
   return (

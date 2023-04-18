@@ -1,11 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialUIState = {
   searchBarVisible: false,
+  loading: false,
 };
 
 const uiSlice = createSlice({
-  name: 'ui',
+  name: "ui",
   initialState: initialUIState,
   reducers: {
     showSearchBar(state, action) {
@@ -13,6 +14,9 @@ const uiSlice = createSlice({
     },
     hideSearchBar(state, action) {
       state.searchBarVisible = false;
+    },
+    setLoading(state, action) {
+      state.loading = !state.loading;
     },
   },
 });

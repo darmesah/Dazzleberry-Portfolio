@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ScrollRestoration } from "react-router-dom";
 
@@ -9,11 +8,6 @@ import { allActions } from "../../store/all-slice";
 import classes from "./components/All.module.css";
 
 const All = () => {
-  useEffect(() => {
-    dispatch(allActions.loadWorkItems());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const dispatch = useDispatch();
 
   const sortAlpha = () => {

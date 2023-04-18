@@ -71,8 +71,8 @@ const Item = ({ items, next }) => {
         />
       </div>
       <div className={classes.next}>
-        <p className={classes.next_p}>Next Project</p>
         <Link to={`/work-item/${next._id}`}>
+          <p className={classes.next_p}>Next Project</p>
           <div className={classes.header}>
             <div className={classes.header_1}>
               <h1>{next.title}</h1>

@@ -30,17 +30,11 @@
     .list_item {
         flex-basis: 47.5%;
         padding-right: 15px;
-        position: relative;
         padding-bottom: 20px;
     }
 
     .list_item.inverse {
         margin-bottom: 40px;
-    }
-
-    .list_item h5 {
-        position: absolute;
-        bottom: -50px;
     }
 }
 
