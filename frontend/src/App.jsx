@@ -29,6 +29,12 @@ import IndustrySub, {
   loader as industryLoader,
 } from "./pages/Work/Industry/IndustrySub";
 
+// Admin
+import AdminHome from "./pages/Admin/Home/Home";
+import Auth from "./pages/Admin/Auth/Auth";
+import Add from "./pages/Admin/Add/Add";
+import Edit from "./pages/Admin/Edit/Edit";
+
 const App = () => {
   return (
     <RouterProvider
@@ -85,6 +91,27 @@ const App = () => {
               path: "work/service/:item",
               element: <ServiceSub />,
               loader: serviceLoader,
+            },
+          ],
+        },
+        {
+          path: "/admin",
+          children: [
+            {
+              index: true,
+              element: <AdminHome />,
+            },
+            {
+              path: "auth",
+              element: <Auth />,
+            },
+            {
+              path: "add-workitem",
+              element: <Add />,
+            },
+            {
+              path: "edit-workitem",
+              element: <Edit />,
             },
           ],
         },

@@ -82,17 +82,16 @@ exports.addWorkItem = async (req, res, next) => {
     const workItem = new WorkItem({
       title,
       workDesc,
-      imageUrl: [...imageUrl],
-      service: [...service],
-      industry: [...industry],
-      description: [...description],
+      imageUrl: imageUrl,
+      service: service,
+      industry: industry,
+      description: description,
     });
 
-    const createdWorkItem = await workItem.save();
+    await workItem.save();
 
     res.status(201).json({
       message: "Work item added successfully",
-      createdWorkItem,
     });
   } catch (error) {
     if (!error.statusCode) {

@@ -3,18 +3,22 @@ import classes from "./Item.module.css";
 
 const Item = ({ items, next }) => {
   const { title, workDesc, imageUrl, service, description, industry } = items;
-  const service_industry = [...service, ...industry];
 
   return (
     <main className={classes.container}>
       <div className={classes.header}>
         <div className={classes.header_1}>
           <h1>{title}</h1>
-          {service_industry.map((item, index) => (
-            <p key={index}>
+          {service.map((item, index) => (
+            <Link to={`/work/service/${item}`} key={index}>
               {item}
-              {index < service_industry.length - 1 && ", "}
-            </p>
+              {index < service.length - 1 && ", "}
+            </Link>
+          ))}
+          {industry.map((item, index) => (
+            <Link to={`/work/industry/${item}`} key={index}>
+              , {item}
+            </Link>
           ))}
         </div>
         <div className={classes.header_2}>{workDesc}</div>

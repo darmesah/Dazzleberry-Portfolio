@@ -8,6 +8,7 @@ import {
 import SubList from "../components/SubItems/SubList/SubList";
 import { Suspense } from "react";
 import Loading from "../../../components/UIElements/Loading/Loading";
+import Error from "../../Error/Error";
 
 const ServiceSub = () => {
   const { service } = useLoaderData();
@@ -17,11 +18,7 @@ const ServiceSub = () => {
       <Suspense fallback={<Loading />}>
         <Await resolve={service}>
           {(data) =>
-            data.error ? (
-              <p>{data.error}</p>
-            ) : (
-              <SubList items={data.workItems} />
-            )
+            data.error ? <Error /> : <SubList items={data.workItems} />
           }
         </Await>
       </Suspense>

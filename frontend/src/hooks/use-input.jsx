@@ -42,7 +42,10 @@ const useInput = (validateValue, initValue) => {
   const hasError = !valueIsValid && inputState.isTouched;
 
   const valueChangeHandler = (e) => {
-    dispatch({ type: "INPUT", value: e.target.value });
+    dispatch({
+      type: "INPUT",
+      value: e.target.files ? e.target.files : e.target.value,
+    });
   };
 
   const inputBlurHandler = () => {

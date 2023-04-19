@@ -6,10 +6,12 @@ import Loading from "../../../../../components/UIElements/Loading/Loading";
 
 import classes from "./WorkList.module.css";
 import { allActions } from "../../../../../store/all-slice";
+import Error from "../../../../Error/Error";
 
 const WorkList = ({ inverse }) => {
   const [total, setTotal] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -51,14 +53,22 @@ const WorkList = ({ inverse }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true);
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/workitems?page=${1}&sort=${sort}`
-      );
-      const data = await response.json();
-      setTotal(data.totalWorkItems);
-      dispatch(allActions.setWorkItems(data.workItems));
-      setIsLoading(false);
+      try {
+        setIsLoading(true);
+        setError(false);
+        const response = await fetch(
+          `${
+            process.env.REACT_APP_BACKEND_URL
+          }/workitems?page=${1}&sort=${sort}`
+        );
+
+        const data = await response.json();
+        setTotal(data.totalWorkItems);
+        dispatch(allActions.setWorkItems(data.workItems));
+        setIsLoading(false);
+      } catch (error) {
+        setError(error);
+      }
     };
 
     fetchData();
@@ -81,23 +91,26 @@ const WorkList = ({ inverse }) => {
   };
 
   return (
-    <ul className={classes.list_cont}>
-      {workItemsData.map((item, index) => (
-        <WorkItem key={index} {...item} inverse={inverse} />
-      ))}
-      {isLoading && (
-        <div className={classes.loading}>
-          <Loading />
-        </div>
-      )}
-      {total === workItemsData.length
-        ? ""
-        : !isLoading && (
-            <div className={classes.load_more}>
-              <p onClick={loadMoreHandler}>Load More</p>
-            </div>
-          )}
-    </ul>
+    <>
+      <ul className={classes.list_cont}>
+        {workItemsData.map((item, index) => (
+          <WorkItem key={index} {...item} inverse={inverse} />
+        ))}
+        {isLoading && (
+          <div className={classes.loading}>
+            <Loading />
+          </div>
+        )}
+        {total === workItemsData.length
+          ? ""
+          : !isLoading && (
+              <div className={classes.load_more}>
+                <p onClick={loadMoreHandler}>Load More</p>
+              </div>
+            )}
+      </ul>
+      {error && <Error />}
+    </>
   );
 };
 

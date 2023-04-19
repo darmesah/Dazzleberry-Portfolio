@@ -25,6 +25,11 @@
     display: inline;
 }
 
+.header_1 a {
+    text-decoration: none;
+    color: #6e6e6e;
+}
+
 .header_2 {
     font-size: 0.83rem;
     font-family: 'JostMedium';
