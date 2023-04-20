@@ -1,0 +1,140 @@
+.list_item {
+    list-style-type: none;
+    margin-bottom: 50px;
+}
+
+.list_item.inverse {
+    margin-bottom: 20px;
+}
+
+.list_item.inverse a {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.list_item h5 {
+    color: #000000;
+    font-family: 'JostSemiBold';
+    font-size: 1.1rem;
+}
+
+.list_item a {
+    text-decoration: none;
+}
+
+.list_item img {
+    width: 100%;
+}
+
+.edit_delete {
+    display: flex;
+    justify-content: space-around;
+}
+
+.edit_delete div {
+    border: 1px solid gray;
+    padding: 8px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.confirm_cont {
+    z-index: 100;
+    position: fixed;
+    width: 78%;
+    top: 25vh;
+    padding: 40px 20px 50px 20px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+.confirm_cont.show {
+    animation: confirm 350ms linear;
+}
+
+@keyframes confirm {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.confirm_cont.hide {
+    animation: cancel 350ms linear;
+}
+
+@keyframes cancel {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+.confirm_cont h2 {
+    font-family: 'JostSemiBold';
+    padding-bottom: 20px;
+}
+
+.confirm_cont_flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.confirm_cont_flex div:first-child {
+    border: 1px solid black;
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+
+.confirm_cont_flex div:last-child {
+    border: none;
+    background-color: red;
+    color: white;
+    padding: 9px 15px;
+    cursor: pointer;
+}
+
+@media (min-width:768px) {
+    .list_item {
+        flex-basis: 47.5%;
+        padding-right: 15px;
+        padding-bottom: 20px;
+    }
+
+    .list_item.inverse {
+        margin-bottom: 40px;
+    }
+
+    .confirm_cont {
+        width: 50%;
+        left: 25vh;
+    }
+}
+
+@media (min-width:1024px) {
+    .list_item {
+        flex-basis: 31.5%;
+    }
+
+    .confirm_cont {
+        width: 30%;
+        left: 65vh;
+    }
+}
+
+@media (min-width:1240px) {
+    .list_item {
+        flex-basis: 23.5%;
+    }
+}

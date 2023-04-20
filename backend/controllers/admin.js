@@ -1,4 +1,4 @@
-const path = require("path");
+const fs = require("fs");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 
@@ -117,10 +117,7 @@ exports.updateWorkItem = async (req, res, next) => {
 
     const title = req.body.title;
     const workDesc = req.body.workDesc;
-    const imageUrl = req.body.imageUrl;
-    const service = req.body.service;
     const description = req.body.description;
-    const industry = req.body.industry;
 
     const workItem = await WorkItem.findById(id);
 
@@ -132,16 +129,12 @@ exports.updateWorkItem = async (req, res, next) => {
 
     workItem.title = title;
     workItem.workDesc = workDesc;
-    workItem.imageUrl = imageUrl;
-    workItem.service = service;
     workItem.description = description;
-    workItem.industry = industry;
 
     await workItem.save();
 
     res.status(201).json({
       message: "Work item updated successfully",
-      workItem,
     });
   } catch (error) {
     if (!error.statusCode) {
@@ -164,6 +157,10 @@ exports.deleteWorkItem = async (req, res, next) => {
     }
 
     await WorkItem.findByIdAndRemove(workItem._id);
+
+    const imagePaths = workItem.imageUrl;
+
+    imagePaths.map((imagePath) => fs.unlink(imagePath, (err) => {}));
 
     res.status(200).json({ message: "Deleted Successfully", workItem });
   } catch (error) {

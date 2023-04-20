@@ -15,10 +15,12 @@ const Modal = (props) => {
         in={props.show}
         mountOnEnter
         unmountOnExit
-        timeout={300}
+        timeout={100}
         classNames="modal"
       >
-        <div ref={nodeRef}>{props.children}</div>
+        <div ref={nodeRef}>
+          <div className="modal_container">{props.children}</div>
+        </div>
       </CSSTransition>
     </>
   );

@@ -3,6 +3,7 @@ import {
   createBrowserRouter,
   Navigate,
 } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import "./App.css";
 
@@ -33,9 +34,12 @@ import IndustrySub, {
 import AdminHome from "./pages/Admin/Home/Home";
 import Auth from "./pages/Admin/Auth/Auth";
 import Add from "./pages/Admin/Add/Add";
-import Edit from "./pages/Admin/Edit/Edit";
+import Edit, { loader as editLoader } from "./pages/Admin/Edit/Edit";
+import AdminRoot from "./pages/Admin/AdminRoot";
 
 const App = () => {
+  const isAuth = useSelector((state) => state.auth.isAuth);
+
   return (
     <RouterProvider
       router={createBrowserRouter([
@@ -96,13 +100,14 @@ const App = () => {
         },
         {
           path: "/admin",
+          element: <AdminRoot />,
           children: [
             {
               index: true,
               element: <AdminHome />,
             },
             {
-              path: "auth",
+              path: "login",
               element: <Auth />,
             },
             {
@@ -110,8 +115,9 @@ const App = () => {
               element: <Add />,
             },
             {
-              path: "edit-workitem",
+              path: "edit-workitem/:id",
               element: <Edit />,
+              loader: editLoader,
             },
           ],
         },

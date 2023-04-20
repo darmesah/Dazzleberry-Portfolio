@@ -8,6 +8,38 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 
+.container.show {
+    animation: confirm 350ms linear;
+}
+
+@keyframes confirm {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.container.hide {
+    animation: cancel 350ms linear;
+}
+
+@keyframes cancel {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
 .cancel {
     text-align: right;
     padding: 0 5px 60px 0;
@@ -56,6 +88,8 @@
 .error_text {
     color: red;
 }
+
+
 
 @media (min-width:768px) {
     .container {

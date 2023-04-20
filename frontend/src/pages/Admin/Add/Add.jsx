@@ -6,49 +6,47 @@ import useInput from "../../../hooks/use-input";
 import { industryList, serviceList } from "./components/data";
 
 import classes from "./components/Add.module.css";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { allActions } from "../../../store/all-slice";
 
 const Add = () => {
   const [checkedServices, setCheckedServices] = useState([]);
   const [checkedIndustries, setCheckedIndustries] = useState([]);
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const isNotEmpty = (value) => value.trim() !== "";
   const isFile = (value) => value.length !== 0;
 
-  const {
-    value: title,
-    isValid: titleIsValid,
-    valueChangeHandler: titleChangeHandler,
-  } = useInput(isNotEmpty, "");
+  const { value: title, valueChangeHandler: titleChangeHandler } = useInput(
+    isNotEmpty,
+    ""
+  );
 
-  const {
-    value: mainDesc,
-    isValid: mainDescIsValid,
-    valueChangeHandler: mainDescChangeHandler,
-  } = useInput(isNotEmpty, "");
+  const { value: mainDesc, valueChangeHandler: mainDescChangeHandler } =
+    useInput(isNotEmpty, "");
 
-  const {
-    value: desc1,
-    isValid: desc1IsValid,
-    valueChangeHandler: desc1ChangeHandler,
-  } = useInput(isNotEmpty, "");
+  const { value: desc1, valueChangeHandler: desc1ChangeHandler } = useInput(
+    isNotEmpty,
+    ""
+  );
 
-  const {
-    value: desc2,
-    isValid: desc2IsValid,
-    valueChangeHandler: desc2ChangeHandler,
-  } = useInput(isNotEmpty, "");
+  const { value: desc2, valueChangeHandler: desc2ChangeHandler } = useInput(
+    isNotEmpty,
+    ""
+  );
 
-  const {
-    value: desc3,
-    isValid: desc3IsValid,
-    valueChangeHandler: desc3ChangeHandler,
-  } = useInput(isNotEmpty, "");
+  const { value: desc3, valueChangeHandler: desc3ChangeHandler } = useInput(
+    isNotEmpty,
+    ""
+  );
 
-  const {
-    value: images,
-    isValid: imageIsValid,
-    valueChangeHandler: imageChangeHandler,
-  } = useInput(isFile, "");
+  const { value: images, valueChangeHandler: imageChangeHandler } = useInput(
+    isFile,
+    ""
+  );
 
   const handleServiceCheck = (e) => {
     const { value, checked } = e.target;
@@ -117,6 +115,9 @@ const Add = () => {
           const error = await response.json();
           throw new Error(error.message);
         }
+
+        navigate("/admin");
+        dispatch(allActions.removeItem());
       } catch (error) {
         console.log(error.message);
       }

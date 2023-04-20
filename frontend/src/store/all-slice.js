@@ -4,6 +4,8 @@ const initialAllState = {
   page: 2,
   workItems: [],
   sort: "",
+  total: 0,
+  deleteTrigger: 0,
 };
 
 const allSlice = createSlice({
@@ -36,6 +38,15 @@ const allSlice = createSlice({
         state.sort = "";
         state.workItems = [];
       }
+    },
+    removeItem(state, action) {
+      state.deleteTrigger = Math.random();
+      state.page = 2;
+      state.sort = "";
+      state.workItems = [];
+    },
+    setTotal(state, action) {
+      state.total = action.payload;
     },
   },
 });

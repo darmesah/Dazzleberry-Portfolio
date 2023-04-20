@@ -1,0 +1,48 @@
+.container {
+    padding: 20px;
+}
+
+.all_cont h4 {
+    font-family: 'JostSemiBold';
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.sort_cont {
+    display: flex;
+    justify-content: left;
+}
+
+.sort_cont p {
+    padding-right: 20px;
+    cursor: pointer;
+}
+
+.bold {
+    font-family: 'JostBold';
+}
+
+@media (min-width:768px) {
+    .container {
+        padding: 30px 60px;
+    }
+}
+
+@media (min-width:1024px) {
+    .container {
+        padding: 50px 120px;
+    }
+
+    .all_cont {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .all_cont h4 {
+        margin-top: 0;
+    }
+
+    .all_cont p {
+        margin-top: 0;
+    }
+}

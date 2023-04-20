@@ -41,7 +41,11 @@ const Search = () => {
 
   return (
     <Modal show={showSearch} onCancel={hideSearchBar}>
-      <main className={classes.container}>
+      <main
+        className={`${classes.container} ${
+          showSearch ? classes.show : classes.hide
+        }`}
+      >
         <div className={classes.cancel}>
           <img onClick={hideSearchBar} src={cancel} alt="cancel" />
         </div>
