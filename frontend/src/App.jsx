@@ -104,19 +104,35 @@ const App = () => {
           children: [
             {
               index: true,
-              element: <AdminHome />,
+              element: isAuth ? (
+                <AdminHome />
+              ) : (
+                <Navigate to="/admin/login" replace="true" />
+              ),
             },
             {
               path: "login",
-              element: <Auth />,
+              element: !isAuth ? (
+                <Auth />
+              ) : (
+                <Navigate to="/admin" replace="true" />
+              ),
             },
             {
               path: "add-workitem",
-              element: <Add />,
+              element: isAuth ? (
+                <Add />
+              ) : (
+                <Navigate to="/admin/login" replace="true" />
+              ),
             },
             {
               path: "edit-workitem/:id",
-              element: <Edit />,
+              element: isAuth ? (
+                <Edit />
+              ) : (
+                <Navigate to="/admin/login" replace="true" />
+              ),
               loader: editLoader,
             },
           ],

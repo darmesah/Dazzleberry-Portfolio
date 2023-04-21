@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Modal from "../../../../../components/UIElements/Modal/Modal";
@@ -20,8 +20,7 @@ const WorkItem = ({ _id, title, imageUrl }) => {
 
   const dispatch = useDispatch();
 
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjQyZmQ4NWRiZWU1ODkxMDI1NWFiZDRiIiwibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjgxOTExNzE4LCJleHAiOjE2ODI1MTY1MTh9.GZ0op8_oFoC8AoxKrk6JLK5tNJAUs9RhrxXUd924FyA";
+  const token = useSelector((state) => state.auth.token);
 
   const confirmDeleteHandler = () => {
     setShowConfrimModal(false);

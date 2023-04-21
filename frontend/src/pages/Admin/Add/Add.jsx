@@ -7,7 +7,7 @@ import { industryList, serviceList } from "./components/data";
 
 import classes from "./components/Add.module.css";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { allActions } from "../../../store/all-slice";
 
 const Add = () => {
@@ -16,6 +16,8 @@ const Add = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const token = useSelector((state) => state.auth.token);
 
   const isNotEmpty = (value) => value.trim() !== "";
   const isFile = (value) => value.length !== 0;
@@ -105,8 +107,7 @@ const Add = () => {
           {
             method: "post",
             headers: {
-              Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjQyZmQ4NWRiZWU1ODkxMDI1NWFiZDRiIiwibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjgxOTExNzE4LCJleHAiOjE2ODI1MTY1MTh9.GZ0op8_oFoC8AoxKrk6JLK5tNJAUs9RhrxXUd924FyA",
+              Authorization: "Bearer " + token,
             },
             body: formData,
           }

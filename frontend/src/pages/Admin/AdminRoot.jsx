@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useLocation } from "react-router-dom";
 
 import { authActions } from "../../store/auth-slice";
@@ -30,11 +30,16 @@ const AdminRoot = () => {
       return;
     }
 
-    dispatch(authActions.login(adminDataValues));
+    dispatch(authActions.login(adminDataValues.token));
   }, [location, dispatch]);
+
+  const isAuth = useSelector((state) => state.auth.isAuth);
 
   return (
     <main>
+      {isAuth && (
+        <button onClick={() => dispatch(authActions.logout())}>Logout</button>
+      )}
       <Outlet />
     </main>
   );
