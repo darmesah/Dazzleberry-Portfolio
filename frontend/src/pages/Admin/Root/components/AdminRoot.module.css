@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+}
+
+.main {
+    flex-basis: 80%;
+    background-color: #F5F5F5;
+    min-height: 100vh;
+}

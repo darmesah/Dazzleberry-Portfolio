@@ -38,7 +38,7 @@ exports.getWorkItems = async (req, res, next) => {
     } else {
       const totalWorkItems = await WorkItem.find().countDocuments();
       const workItems = await WorkItem.find({})
-        .sort(sort === "asc" ? { title: 1 } : "")
+        .sort(sort === "asc" ? { title: 1 } : { createdAt: -1 })
         .skip((currentPage - 1) * perPage)
         .limit(perPage);
 

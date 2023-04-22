@@ -39,6 +39,17 @@ const allSlice = createSlice({
         state.workItems = [];
       }
     },
+    adminSort(state, action) {
+      if (state.sort === "") {
+        state.page = 2;
+        state.sort = "asc";
+        state.workItems = [];
+      } else {
+        state.page = 2;
+        state.sort = "";
+        state.workItems = [];
+      }
+    },
     removeItem(state, action) {
       state.deleteTrigger = Math.random();
       state.page = 2;
@@ -47,6 +58,14 @@ const allSlice = createSlice({
     },
     setTotal(state, action) {
       state.total = action.payload;
+    },
+    adminSearch(state, action) {
+      state.workItems = [];
+      state.deleteTrigger = Math.random();
+    },
+    adminCancelSearch(state, action) {
+      state.workItems = [];
+      state.deleteTrigger = Math.random();
     },
   },
 });

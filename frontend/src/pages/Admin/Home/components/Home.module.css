@@ -1,48 +1,106 @@
-.container {
-    padding: 20px;
-}
-
-.all_cont h4 {
-    font-family: 'JostSemiBold';
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-}
-
-.sort_cont {
-    display: flex;
-    justify-content: left;
-}
-
-.sort_cont p {
-    padding-right: 20px;
-    cursor: pointer;
-}
-
-.bold {
-    font-family: 'JostBold';
-}
-
-@media (min-width:768px) {
-    .container {
-        padding: 30px 60px;
-    }
-}
-
 @media (min-width:1024px) {
     .container {
-        padding: 50px 120px;
-    }
-
-    .all_cont {
-        display: flex;
-        justify-content: space-between;
+        padding: 20px;
     }
 
     .all_cont h4 {
-        margin-top: 0;
+        font-family: 'JostSemiBold';
+        font-size: 2rem;
+        margin: 10px 0;
     }
 
-    .all_cont p {
-        margin-top: 0;
+    .text1 {
+        color: #949494;
+        font-family: 'JostMedium';
+    }
+
+    .worklist {
+        background: white;
+        padding: 20px;
+    }
+
+    .projects_add_sort {
+        display: flex;
+        padding: 25px 0 15px 0;
+    }
+
+    .projects_add_sort div:first-child {
+        flex-basis: 50%;
+        font-family: 'JostMedium';
+        color: #002547;
+    }
+
+    .total {
+        color: #949494;
+    }
+
+    .projects_add_sort div:last-child {
+        flex-basis: 50%;
+    }
+
+    .projects_add_sort ul {
+        margin: 0;
+        text-align: end;
+    }
+
+    .projects_add_sort ul li {
+        display: inline;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+
+    .projects_add_sort ul li a {
+        color: #002547;
+        text-decoration: none;
+        font-family: 'JostMedium';
+        position: relative;
+        top: -3px;
+    }
+
+    .projects_add_sort ul li img {
+        width: 18px;
+    }
+
+    .projects_add_sort ul li:last-child {
+        position: relative;
+        top: -3px;
+    }
+
+    .search {
+        text-align: end;
+        display: flex;
+    }
+
+    .search form {
+        border-bottom: 1px solid #949494;
+        width: fit-content;
+        margin-left: auto;
+        padding-bottom: 4px;
+    }
+
+    .search input {
+        border: none;
+        background: none;
+    }
+
+    .search input:focus {
+        outline: none;
+    }
+
+    .search button {
+        border: none;
+        background: none;
+    }
+
+    .search button img {
+        width: 15px;
+        position: relative;
+        top: 4px;
+    }
+
+    .cancel {
+        width: 15px;
+        margin-left: 20px;
+        cursor: pointer;
     }
 }

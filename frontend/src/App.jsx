@@ -35,7 +35,7 @@ import AdminHome from "./pages/Admin/Home/Home";
 import Auth from "./pages/Admin/Auth/Auth";
 import Add from "./pages/Admin/Add/Add";
 import Edit, { loader as editLoader } from "./pages/Admin/Edit/Edit";
-import AdminRoot from "./pages/Admin/AdminRoot";
+import AdminRoot from "./pages/Admin/Root/AdminRoot";
 
 const App = () => {
   const isAuth = useSelector((state) => state.auth.isAuth);

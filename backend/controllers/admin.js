@@ -59,6 +59,71 @@ exports.login = async (req, res, next) => {
   }
 };
 
+exports.getWorkItems = async (req, res, next) => {
+  const keyword = req.query.keyword;
+  const sort = req.query.sort;
+  const currentPage = req.query.page || 1;
+  const perPage = 2;
+
+  try {
+    if (keyword) {
+      if (keyword.length < 3) {
+        return res.status(200).json({
+          message: "No work item with that keyword found",
+          workItems: [],
+        });
+      } else {
+        const workItems = await WorkItem.find({
+          $or: [
+            { title: { $regex: keyword, $options: "i" } },
+            { workDesc: { $regex: keyword, $options: "i" } },
+            { service: { $regex: keyword, $options: "i" } },
+            { description: { $regex: keyword, $options: "i" } },
+            { industry: { $regex: keyword, $options: "i" } },
+          ],
+        }).select("-imageUrl -description");
+
+        if (workItems.length === 0) {
+          return res.status(200).json({
+            message: "No work item with that keyword found",
+            workItems: [],
+          });
+        }
+
+        res
+          .status(200)
+          .json({
+            message: "Searched work items successfully",
+            workItems,
+            totalWorkItems: workItems.length,
+          });
+      }
+    } else {
+      const totalWorkItems = await WorkItem.find().countDocuments();
+      const workItems = await WorkItem.find({})
+        .sort(sort === "asc" ? { title: 1 } : { createdAt: -1 })
+        .skip((currentPage - 1) * perPage)
+        .limit(perPage)
+        .select("title workDesc createdAt");
+
+      if (workItems.length === 0) {
+        return res.status(404).json({ message: "No work item found" });
+      }
+
+      res.status(200).json({
+        message: "Fetched work items successfully",
+        workItems,
+        totalWorkItems,
+      });
+    }
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500;
+    }
+    next(error);
+  }
+};
+
 exports.addWorkItem = async (req, res, next) => {
   try {
     await adminCheck(req);

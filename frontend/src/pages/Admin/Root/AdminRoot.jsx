@@ -1,8 +1,12 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Outlet, useLocation } from "react-router-dom";
 
-import { authActions } from "../../store/auth-slice";
+import { authActions } from "../../../store/auth-slice";
+
+import SideBar from "./components/SideBar/SideBar";
+
+import classes from "./components/AdminRoot.module.css";
 
 const AdminRoot = () => {
   const location = useLocation();
@@ -33,14 +37,12 @@ const AdminRoot = () => {
     dispatch(authActions.login(adminDataValues.token));
   }, [location, dispatch]);
 
-  const isAuth = useSelector((state) => state.auth.isAuth);
-
   return (
-    <main>
-      {isAuth && (
-        <button onClick={() => dispatch(authActions.logout())}>Logout</button>
-      )}
-      <Outlet />
+    <main className={classes.container}>
+      <SideBar />
+      <div className={classes.main}>
+        <Outlet />
+      </div>
     </main>
   );
 };

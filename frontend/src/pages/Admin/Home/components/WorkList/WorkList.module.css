@@ -1,31 +1,26 @@
-.list_cont {
-    padding-left: 0;
-    position: relative;
-}
-
-.loading {
-    width: 100%;
-    text-align: center;
-}
-
-.load_more {
-    width: 100%;
-    text-align: center;
-    margin: 50px 0 0 0;
-}
-
-.load_more p {
-    text-decoration: none;
-    font-size: 1rem;
-    color: #949494;
-    text-transform: uppercase;
-    font-family: 'JostSemiBold';
-    cursor: pointer;
-}
-
-@media (min-width:768px) {
+@media (min-width:1024px) {
     .list_cont {
-        display: flex;
-        flex-wrap: wrap;
+        padding-left: 0;
+        position: relative;
+    }
+
+    .loading {
+        width: 100%;
+        text-align: center;
+    }
+
+    .load_more {
+        width: 100%;
+        text-align: center;
+        margin: 50px 0 0 0;
+    }
+
+    .load_more p {
+        text-decoration: none;
+        font-size: 1rem;
+        color: #949494;
+        text-transform: uppercase;
+        font-family: 'JostSemiBold';
+        cursor: pointer;
     }
 }
