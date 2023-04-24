@@ -23,8 +23,11 @@ const ImageUpload = (props) => {
   };
 
   return (
-    <div>
+    <div className={classes.img_cont}>
+      <label>Images</label>
+      <br />
       <input
+        id="files"
         type="file"
         multiple
         name="image"
@@ -34,12 +37,18 @@ const ImageUpload = (props) => {
       />
       {selectedFiles.length > 0 && (
         <div>
-          <h2>Selected Files:</h2>
+          <h2 className={classes.h2}>Selected Files:</h2>
           <ul className={classes.selected_images}>
             {imagePreviewUrl.map((file) => (
               <li key={file.name}>
                 <p>{file.name}</p>
-                <img src={file.imageUrl} alt={file.name} width="100px" />
+                <div className={classes.image_cont}>
+                  <img
+                    className={classes.image}
+                    src={file.imageUrl}
+                    alt={file.name}
+                  />
+                </div>
               </li>
             ))}
           </ul>

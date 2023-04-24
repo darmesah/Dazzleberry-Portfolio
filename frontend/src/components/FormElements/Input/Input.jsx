@@ -21,8 +21,8 @@ const Input = (props) => {
     );
 
   return (
-    <div>
-      <label htmlFor={props.name}>{props.label}:</label>
+    <div className={props.className}>
+      <label htmlFor={props.name}>{props.label}</label>
       <br />
       {element}
       {props.hasError}

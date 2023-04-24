@@ -1,8 +1,37 @@
 .selected_images {
+    width: 80%;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .selected_images li {
-    padding-right: 20px;
+    padding-right: 10px;
     list-style-type: none;
+    width: 80px;
+    padding-bottom: 10px;
+}
+
+.img_cont {
+    height: 280px;
+}
+
+.selected_images li p {
+    font-size: .7rem;
+    margin: 0;
+}
+
+.image_cont {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.image {
+    width: 60px;
+}
+
+.h2 {
+    font-family: 'JostSemiBold';
+    margin-bottom: 0px;
 }

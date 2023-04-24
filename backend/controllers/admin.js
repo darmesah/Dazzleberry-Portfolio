@@ -90,13 +90,11 @@ exports.getWorkItems = async (req, res, next) => {
           });
         }
 
-        res
-          .status(200)
-          .json({
-            message: "Searched work items successfully",
-            workItems,
-            totalWorkItems: workItems.length,
-          });
+        res.status(200).json({
+          message: "Searched work items successfully",
+          workItems,
+          totalWorkItems: workItems.length,
+        });
       }
     } else {
       const totalWorkItems = await WorkItem.find().countDocuments();
@@ -228,6 +226,100 @@ exports.deleteWorkItem = async (req, res, next) => {
     imagePaths.map((imagePath) => fs.unlink(imagePath, (err) => {}));
 
     res.status(200).json({ message: "Deleted Successfully", workItem });
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500;
+    }
+    next(error);
+  }
+};
+
+exports.getServices = async (req, res, next) => {
+  try {
+    const services = await WorkItem.find().select("-_id service");
+    const servicesList = services.map((service) => service.service).flat();
+    const allServices = [...new Set(servicesList)].sort();
+
+    res.status(200).json({
+      message: "Fetched services successfully",
+      services: allServices,
+    });
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500;
+    }
+    next(error);
+  }
+};
+
+exports.getIndustries = async (req, res, next) => {
+  try {
+    const industries = await WorkItem.find().select("-_id industry");
+    const industriesList = industries
+      .map((industry) => industry.industry)
+      .flat();
+    const allIndustries = [...new Set(industriesList)].sort();
+
+    res.status(200).json({
+      message: "Fetched industries successfully",
+      industries: allIndustries,
+    });
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500;
+    }
+    next(error);
+  }
+};
+
+exports.getService = async (req, res, next) => {
+  const service = req.params.service;
+  const sort = req.query.sort;
+
+  try {
+    const workItems = await WorkItem.find({
+      service: { $regex: service, $options: "i" },
+    })
+      .sort(sort === "asc" ? { title: 1 } : { createdAt: -1 })
+      .select("title");
+
+    if (workItems < 1) {
+      const error = new Error("No workitem found");
+      error.statusCode = 404;
+      throw error;
+    }
+
+    res
+      .status(200)
+      .json({ message: "Fetched work items successfully", workItems });
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500;
+    }
+    next(error);
+  }
+};
+
+exports.getIndustry = async (req, res, next) => {
+  const industry = req.params.industry;
+  const sort = req.query.sort;
+
+  try {
+    const workItems = await WorkItem.find({
+      industry: { $regex: industry, $options: "i" },
+    })
+      .sort(sort === "asc" ? { title: 1 } : { createdAt: -1 })
+      .select("title");
+
+    if (workItems < 1) {
+      const error = new Error("No workitem found");
+      error.statusCode = 404;
+      throw error;
+    }
+
+    res
+      .status(200)
+      .json({ message: "Fetched work items successfully", workItems });
   } catch (error) {
     if (!error.statusCode) {
       error.statusCode = 500;

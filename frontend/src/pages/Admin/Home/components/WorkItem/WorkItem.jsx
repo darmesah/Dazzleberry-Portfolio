@@ -12,7 +12,12 @@ import Modal from "../../../../../components/UIElements/Modal/Modal";
 import classes from "./WorkItem.module.css";
 import { allActions } from "../../../../../store/all-slice";
 
-const WorkItem = ({ _id, title, workDesc, imageUrl }) => {
+const WorkItem = ({ _id, title, workDesc, createdAt }) => {
+  const day = new Date(createdAt).getDate();
+  const month = new Date(createdAt).toLocaleDateString("default", {
+    month: "long",
+  });
+
   const [showOptions, setShowOptions] = useState(false);
   const [showInfoEdit, setShowInfoEdit] = useState(false);
   const [showInfoView, setShowInfoView] = useState(false);
@@ -145,7 +150,7 @@ const WorkItem = ({ _id, title, workDesc, imageUrl }) => {
             </ul>
           </div>
         ) : (
-          <div>Apr 13</div>
+          <div>{`${day} ${month}`}</div>
         )}
       </li>
     </>

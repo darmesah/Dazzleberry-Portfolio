@@ -20,35 +20,58 @@ const Add = () => {
   const token = useSelector((state) => state.auth.token);
 
   const isNotEmpty = (value) => value.trim() !== "";
-  const isFile = (value) => value.length !== 0;
+  const isFile = (value) => value.length === 8;
 
-  const { value: title, valueChangeHandler: titleChangeHandler } = useInput(
-    isNotEmpty,
-    ""
-  );
+  const {
+    value: title,
+    valueChangeHandler: titleChangeHandler,
+    isValid: titleIsValid,
+  } = useInput(isNotEmpty, "");
 
-  const { value: mainDesc, valueChangeHandler: mainDescChangeHandler } =
-    useInput(isNotEmpty, "");
+  const {
+    value: mainDesc,
+    valueChangeHandler: mainDescChangeHandler,
+    isValid: mainDescIsValid,
+  } = useInput(isNotEmpty, "");
 
-  const { value: desc1, valueChangeHandler: desc1ChangeHandler } = useInput(
-    isNotEmpty,
-    ""
-  );
+  const {
+    value: desc1,
+    valueChangeHandler: desc1ChangeHandler,
+    isValid: desc1IsValid,
+  } = useInput(isNotEmpty, "");
 
-  const { value: desc2, valueChangeHandler: desc2ChangeHandler } = useInput(
-    isNotEmpty,
-    ""
-  );
+  const {
+    value: desc2,
+    valueChangeHandler: desc2ChangeHandler,
+    isValid: desc2IsValid,
+  } = useInput(isNotEmpty, "");
 
-  const { value: desc3, valueChangeHandler: desc3ChangeHandler } = useInput(
-    isNotEmpty,
-    ""
-  );
+  const {
+    value: desc3,
+    valueChangeHandler: desc3ChangeHandler,
+    isValid: desc3IsValid,
+  } = useInput(isNotEmpty, "");
 
-  const { value: images, valueChangeHandler: imageChangeHandler } = useInput(
-    isFile,
-    ""
-  );
+  const {
+    value: images,
+    valueChangeHandler: imageChangeHandler,
+    isValid: imagesIsValid,
+  } = useInput(isFile, "");
+
+  let formIsValid = false;
+
+  if (
+    titleIsValid &&
+    mainDescIsValid &&
+    desc1IsValid &&
+    desc2IsValid &&
+    desc3IsValid &&
+    imagesIsValid &&
+    checkedServices.length > 0 &&
+    checkedIndustries.length > 0
+  ) {
+    formIsValid = true;
+  }
 
   const handleServiceCheck = (e) => {
     const { value, checked } = e.target;
@@ -129,83 +152,97 @@ const Add = () => {
 
   return (
     <main className={classes.container}>
-      <h1>Add Workitem</h1>
       <form onSubmit={formSubmitHandler}>
-        <Input
-          element="input"
-          label="Title"
-          name="title"
-          type="text"
-          value={title}
-          placeholder="Enter Title"
-          onChange={titleChangeHandler}
-        />
-        <Input
-          element="textarea"
-          label="Main Description"
-          name="main_description"
-          value={mainDesc}
-          placeholder="Enter Main Description"
-          onChange={mainDescChangeHandler}
-        />
-        <Input
-          element="textarea"
-          label="Description 1"
-          name="description1"
-          value={desc1}
-          placeholder="Description 1"
-          onChange={desc1ChangeHandler}
-        />
-        <Input
-          element="textarea"
-          label="Description 2"
-          name="description1"
-          value={desc2}
-          placeholder="Description 2"
-          onChange={desc2ChangeHandler}
-        />
-        <Input
-          element="textarea"
-          label="Description 3"
-          name="description1"
-          value={desc3}
-          placeholder="Description 3"
-          onChange={desc3ChangeHandler}
-        />
-        <ImageUpload imageChangeHandler={imageChangeHandler} />
-        <div className={classes.service_industry}>
+        <div className={classes.header_flex}>
           <div>
-            <h3>Service:</h3>
-            {serviceList.map((service, index) => (
-              <div key={index}>
-                <input
-                  type="checkbox"
-                  id={service}
-                  name={service}
-                  value={service}
-                  onChange={handleServiceCheck}
-                />
-                <label>{service}</label>
-              </div>
-            ))}
+            <h1>Add New</h1>
+            <p className={classes.p1}>Create a new project.</p>
           </div>
-          <div>
-            <h3>Industry:</h3>
-            {industryList.map((industry, index) => (
-              <div key={index}>
-                <input
-                  type="checkbox"
-                  id={industry}
-                  name={industry}
-                  value={industry}
-                  onChange={handleIndustryCheck}
-                />
-                <label>{industry}</label>
-              </div>
-            ))}
+          <div className={classes.can_pub}>
+            <button>CANCEL</button>
+            <button disabled={!formIsValid} type="submit">
+              PUBLISH
+            </button>
           </div>
         </div>
-        <button type="submit">Add WorkItem</button>
+        <div className={classes.form_flex}>
+          <div>
+            <Input
+              element="input"
+              label="Title"
+              name="title"
+              type="text"
+              value={title}
+              onChange={titleChangeHandler}
+              className={`${classes.title} ${classes.input}`}
+            />
+            <Input
+              element="textarea"
+              label="Description"
+              name="main_description"
+              value={mainDesc}
+              onChange={mainDescChangeHandler}
+              className={`${classes.textarea}`}
+            />
+            <ImageUpload imageChangeHandler={imageChangeHandler} />
+            <h3>Service Category:</h3>
+            <div className={classes.column}>
+              {serviceList.map((service, index) => (
+                <div key={index}>
+                  <input
+                    type="checkbox"
+                    id={service}
+                    name={service}
+                    value={service}
+                    onChange={handleServiceCheck}
+                  />
+                  <label>{service}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <Input
+              element="textarea"
+              label="Body Copy 1"
+              name="description1"
+              value={desc1}
+              onChange={desc1ChangeHandler}
+              className={`${classes.textarea}`}
+            />
+            <Input
+              element="textarea"
+              label="Body Copy 2"
+              name="description1"
+              value={desc2}
+              onChange={desc2ChangeHandler}
+              className={`${classes.textarea}`}
+            />
+            <Input
+              element="textarea"
+              label="Body Copy 3"
+              name="description1"
+              value={desc3}
+              onChange={desc3ChangeHandler}
+              className={`${classes.textarea}`}
+            />
+            <h3>Industry Category:</h3>
+            <div className={classes.column}>
+              {industryList.map((industry, index) => (
+                <div key={index}>
+                  <input
+                    type="checkbox"
+                    id={industry}
+                    name={industry}
+                    value={industry}
+                    onChange={handleIndustryCheck}
+                  />
+                  <label>{industry}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </form>
     </main>
   );

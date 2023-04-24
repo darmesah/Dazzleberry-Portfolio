@@ -32,12 +32,13 @@ const AdminHome = () => {
   };
 
   const total = useSelector((state) => state.all.total);
+  const searchValue = useSelector((state) => state.all.adminSearchText);
 
   const searchHandler = (e) => {
     e.preventDefault();
 
     navigate(`?keyword=${textValue}`);
-    dispatch(allActions.adminSearch());
+    dispatch(allActions.adminSearch(textValue));
   };
 
   const cancelSearchHandler = () => {
@@ -57,7 +58,8 @@ const AdminHome = () => {
           <div className={classes.worklist}>
             <div className={classes.projects_add_sort}>
               <div>
-                Projects <span className={classes.total}>{total}</span>
+                {searchValue ? "Result(s) for " + searchValue : "Projects"}{" "}
+                <span className={classes.total}>{total > 0 ? total : 0}</span>
               </div>
               {!searchForm ? (
                 <div>

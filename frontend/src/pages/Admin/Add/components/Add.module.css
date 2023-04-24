@@ -1,20 +1,107 @@
 .container {
-    padding: 20px;
+    padding: 0 20px 50px 20px;
 }
 
-.service_industry {
+.header_flex {
     display: flex;
     justify-content: space-between;
 }
 
-@media (min-width:768px) {
-    .container {
-        padding: 20px 50px;
-    }
+.container h1 {
+    font-size: 2.5rem;
+    font-family: 'JostSemiBold';
+    margin-bottom: 0;
 }
 
-@media (min-width:1024px) {
-    .container {
-        padding: 20px 150px;
-    }
+.p1 {
+    color: #949494;
+    margin: 10px 0 30px 0;
+}
+
+.can_pub {
+    padding: 50px 45px 0 0;
+
+}
+
+.can_pub button {
+    font-family: 'JostMedium';
+    padding: 10px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.can_pub button:first-child {
+    background: none;
+    border: none;
+    color: #002547;
+}
+
+.can_pub button:last-child {
+    border: none;
+    background-color: #002547;
+    color: white;
+}
+
+.can_pub button:last-child:disabled {
+    cursor: not-allowed;
+    background-color: #949494;
+}
+
+.form_flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form_flex div {
+    flex-basis: 50%;
+}
+
+.container form label {
+    font-size: 1.3rem;
+    font-family: 'JostMedium';
+}
+
+.column {
+    column-count: 2;
+    column-gap: 30px;
+}
+
+.column label {
+    font-size: 1rem !important;
+}
+
+.column div {
+    padding-bottom: 5px;
+}
+
+.container form .input input {
+    width: 90%;
+    border: none;
+    margin-bottom: 10px;
+}
+
+.container form .input input:focus {
+    outline: none;
+}
+
+.title input {
+    padding: 8px;
+}
+
+.container form .textarea textarea {
+    width: 90%;
+    border: none;
+    resize: vertical;
+    height: 115px;
+    margin-bottom: 10px;
+    padding: 8px;
+}
+
+.container form .textarea textarea:focus {
+    outline: none;
+}
+
+.container h3 {
+    font-family: 'JostSemiBold';
+    padding-top: 25px;
 }

@@ -6,6 +6,7 @@ const initialAllState = {
   sort: "",
   total: 0,
   deleteTrigger: 0,
+  adminSearchText: "",
 };
 
 const allSlice = createSlice({
@@ -62,10 +63,13 @@ const allSlice = createSlice({
     adminSearch(state, action) {
       state.workItems = [];
       state.deleteTrigger = Math.random();
+      state.adminSearchText = action.payload;
     },
     adminCancelSearch(state, action) {
       state.workItems = [];
+      state.page = 2;
       state.deleteTrigger = Math.random();
+      state.adminSearchText = "";
     },
   },
 });

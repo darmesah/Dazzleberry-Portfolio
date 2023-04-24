@@ -7,10 +7,12 @@ import classes from "./SideBar.module.css";
 const SideBar = () => {
   return (
     <main className={classes.container}>
-      <div className={classes.img}>
-        <img src={logo} alt="logo" />
+      <div className={classes.fixed}>
+        <div className={classes.img}>
+          <img src={logo} alt="logo" />
+        </div>
+        <Navigation />
       </div>
-      <Navigation />
     </main>
   );
 };

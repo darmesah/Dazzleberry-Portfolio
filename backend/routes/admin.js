@@ -8,6 +8,14 @@ const router = express.Router();
 
 router.get("/workitems", adminController.getWorkItems);
 
+router.get("/industries", adminController.getIndustries);
+
+router.get("/services", adminController.getServices);
+
+router.get("/industry/:industry", adminController.getIndustry);
+
+router.get("/service/:service", adminController.getService);
+
 router.post("/login", adminController.login);
 
 router.post(

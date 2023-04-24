@@ -36,6 +36,13 @@ import Auth from "./pages/Admin/Auth/Auth";
 import Add from "./pages/Admin/Add/Add";
 import Edit, { loader as editLoader } from "./pages/Admin/Edit/Edit";
 import AdminRoot from "./pages/Admin/Root/AdminRoot";
+import CategoryRoot from "./pages/Admin/Categories/Root/Root";
+import CategoryIndustry, {
+  loader as categoryIndustryLoader,
+} from "./pages/Admin/Categories/Industry";
+import CategoryService, {
+  loader as categoryServiceLoader,
+} from "./pages/Admin/Categories/Service";
 
 const App = () => {
   const isAuth = useSelector((state) => state.auth.isAuth);
@@ -134,6 +141,26 @@ const App = () => {
                 <Navigate to="/admin/login" replace="true" />
               ),
               loader: editLoader,
+            },
+            {
+              path: "categories",
+              element: <CategoryRoot />,
+              children: [
+                {
+                  index: true,
+                  element: <Navigate to="industry" replace="true" />,
+                },
+                {
+                  path: "industry",
+                  element: <CategoryIndustry />,
+                  loader: categoryIndustryLoader,
+                },
+                {
+                  path: "service",
+                  element: <CategoryService />,
+                  loader: categoryServiceLoader,
+                },
+              ],
             },
           ],
         },
