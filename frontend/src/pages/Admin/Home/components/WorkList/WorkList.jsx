@@ -71,7 +71,6 @@ const WorkList = ({ inverse }) => {
         setIsLoading(true);
         setError(false);
         const response = await fetch(url);
-
         const data = await response.json();
         dispatch(allActions.setTotal(data.totalWorkItems));
         dispatch(allActions.setWorkItems(data.workItems));

@@ -16,6 +16,8 @@ router.get("/industry/:industry", adminController.getIndustry);
 
 router.get("/service/:service", adminController.getService);
 
+router.get("/info/:userId", adminController.getInfo);
+
 router.post("/login", adminController.login);
 
 router.post(
@@ -49,6 +51,10 @@ router.patch(
   isAuth,
   adminController.updateWorkItem
 );
+
+router.patch("/info/:userId", isAuth, adminController.updateInfo);
+
+router.patch("/password/:userId", isAuth, adminController.updatePassword);
 
 router.delete("/workitem/:id", isAuth, adminController.deleteWorkItem);
 

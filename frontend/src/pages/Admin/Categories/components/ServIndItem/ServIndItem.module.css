@@ -9,3 +9,7 @@
     text-decoration: none;
     color: black;
 }
+
+.list_item span {
+    padding-left: 15px;
+}

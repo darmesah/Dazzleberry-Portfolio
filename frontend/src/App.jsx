@@ -43,6 +43,11 @@ import CategoryIndustry, {
 import CategoryService, {
   loader as categoryServiceLoader,
 } from "./pages/Admin/Categories/Service";
+import CategorySubIndustry from "./pages/Admin/Categories/SubIndustry/SubIndustry";
+import CategorySubService from "./pages/Admin/Categories/SubService/SubService";
+import Settings, {
+  loader as adminInfoLoader,
+} from "./pages/Admin/Settings/Settings";
 
 const App = () => {
   const isAuth = useSelector((state) => state.auth.isAuth);
@@ -143,8 +148,21 @@ const App = () => {
               loader: editLoader,
             },
             {
+              path: "settings/:userId",
+              element: isAuth ? (
+                <Settings />
+              ) : (
+                <Navigate to="/admin/login" replace="true" />
+              ),
+              loader: adminInfoLoader,
+            },
+            {
               path: "categories",
-              element: <CategoryRoot />,
+              element: isAuth ? (
+                <CategoryRoot />
+              ) : (
+                <Navigate to="/admin/login" replace="true" />
+              ),
               children: [
                 {
                   index: true,
@@ -161,6 +179,14 @@ const App = () => {
                   loader: categoryServiceLoader,
                 },
               ],
+            },
+            {
+              path: "categories/industry/:item",
+              element: <CategorySubIndustry />,
+            },
+            {
+              path: "categories/service/:item",
+              element: <CategorySubService />,
             },
           ],
         },

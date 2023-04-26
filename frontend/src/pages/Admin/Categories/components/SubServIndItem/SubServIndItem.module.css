@@ -1,4 +1,4 @@
-.confirm_cont {
+/* .confirm_cont {
     z-index: 100;
     position: fixed;
     width: 78%;
@@ -63,7 +63,7 @@
     color: white;
     padding: 9px 15px;
     cursor: pointer;
-}
+} */
 
 @media (min-width:1240px) {
     .list_item {

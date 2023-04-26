@@ -4,6 +4,7 @@ import Input from "../../../components/FormElements/Input/Input";
 import ImageUpload from "../../../components/FormElements/Multiple Image/ImageUpload";
 import useInput from "../../../hooks/use-input";
 import { industryList, serviceList } from "./components/data";
+import Button from "../../../components/FormElements/Button/Button";
 
 import classes from "./components/Add.module.css";
 import { useNavigate } from "react-router-dom";
@@ -160,9 +161,9 @@ const Add = () => {
           </div>
           <div className={classes.can_pub}>
             <button>CANCEL</button>
-            <button disabled={!formIsValid} type="submit">
+            <Button disabled={!formIsValid} type="submit">
               PUBLISH
-            </button>
+            </Button>
           </div>
         </div>
         <div className={classes.form_flex}>

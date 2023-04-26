@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import classes from "./ServIndItem.module.css";
 
-const ServIndItem = ({ item }) => {
+const ServIndItem = ({ title, amount }) => {
   return (
     <li className={classes.list_item}>
-      <Link to={item}>{item}</Link>
+      <Link to={title}>{title}</Link> <span>{amount}</span>
     </li>
   );
 };

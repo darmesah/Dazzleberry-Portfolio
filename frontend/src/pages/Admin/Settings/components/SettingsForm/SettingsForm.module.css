@@ -1,0 +1,50 @@
+.container {
+    padding: 20px 100px 20px 0;
+}
+
+.input {
+    margin: 10px 0 30px 0;
+}
+
+.input label {
+    font-family: 'JostMedium';
+}
+
+.input input {
+    width: 98%;
+    border: none;
+    padding: 10px;
+}
+
+.input input:focus {
+    outline: none;
+}
+
+.btn {
+    border: none;
+    background-color: #002547;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.form2 {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #949494a8;
+}
+
+.form2 .h2 {
+    font-family: 'JostSemiBold';
+}
+
+.form2 .p2 {
+    color: #949494;
+    width: 90%;
+}
+
+.err {
+    color: red;
+    margin-top: 5px;
+}

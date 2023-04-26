@@ -1,0 +1,22 @@
+.subflex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.subflex img {
+    padding: 32px 0 0 0;
+}
+
+.title {
+    font-family: 'JostMedium';
+    color: #002547 !important;
+    padding-top: 50px;
+}
+
+.length {
+    color: #949494;
+}
+
+.items {
+    padding: 10px 0 0 0;
+}

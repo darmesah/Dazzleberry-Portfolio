@@ -61,7 +61,7 @@ const Auth = () => {
         navigate("/admin", { replace: true });
 
         const data = await response.json();
-        const { token } = data;
+        const { token, userId } = data;
         const expiration = new Date();
         // expiration.setSeconds(expiration.getSeconds() + 30);
         expiration.setHours(expiration.getHours() + 1);
@@ -69,11 +69,12 @@ const Auth = () => {
         const adminData = {
           token,
           expiration,
+          userId,
         };
 
         localStorage.setItem("adminData", JSON.stringify(adminData));
 
-        dispatch(authActions.login(token));
+        dispatch(authActions.login({ token, userId }));
       } catch (error) {
         setError(error.message);
       }

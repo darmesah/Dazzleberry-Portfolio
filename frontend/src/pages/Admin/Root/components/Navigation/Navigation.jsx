@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { authActions } from "../../../../../store/auth-slice";
 import { allActions } from "../../../../../store/all-slice";
@@ -8,6 +8,8 @@ import classes from "./Navigation.module.css";
 
 const Navigation = () => {
   const dispatch = useDispatch();
+
+  const userId = useSelector((state) => state.auth.userId);
 
   return (
     <div className={classes.container}>
@@ -37,7 +39,7 @@ const Navigation = () => {
       <div className={classes.account}>
         <h3>Account</h3>
         <NavLink
-          to="settings"
+          to={`settings/${userId}`}
           className={({ isActive }) => (isActive ? classes.active : undefined)}
         >
           Settings

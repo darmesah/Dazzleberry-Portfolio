@@ -24,9 +24,10 @@ const AdminRoot = () => {
     }
 
     const adminDataValues = JSON.parse(adminData);
+    const { expiration, token, userId } = adminDataValues;
 
     // Check token duration
-    const storedTokenExpirationTime = adminDataValues.expiration;
+    const storedTokenExpirationTime = expiration;
     const expirationDate = new Date(storedTokenExpirationTime);
     const now = new Date();
     const duration = expirationDate.getTime() - now.getTime();
@@ -38,7 +39,7 @@ const AdminRoot = () => {
       return;
     }
 
-    dispatch(authActions.login(adminDataValues.token));
+    dispatch(authActions.login({ token, userId }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location, dispatch]);
 

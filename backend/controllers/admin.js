@@ -50,6 +50,7 @@ exports.login = async (req, res, next) => {
 
     res.status(200).json({
       token,
+      userId: admin._id,
     });
   } catch (error) {
     if (!error.statusCode) {
@@ -240,9 +241,24 @@ exports.getServices = async (req, res, next) => {
     const servicesList = services.map((service) => service.service).flat();
     const allServices = [...new Set(servicesList)].sort();
 
+    let serviceTitleCount = [];
+
+    for (let i = 0; i < allServices.length; i++) {
+      const availableService = await WorkItem.find({
+        service: allServices[i],
+      }).countDocuments();
+
+      const availableServiceCount = {
+        title: allServices[i],
+        amount: availableService,
+      };
+
+      serviceTitleCount.push(availableServiceCount);
+    }
+
     res.status(200).json({
       message: "Fetched services successfully",
-      services: allServices,
+      services: serviceTitleCount,
     });
   } catch (error) {
     if (!error.statusCode) {
@@ -260,9 +276,24 @@ exports.getIndustries = async (req, res, next) => {
       .flat();
     const allIndustries = [...new Set(industriesList)].sort();
 
+    let industryTitleCount = [];
+
+    for (let i = 0; i < allIndustries.length; i++) {
+      const availableIndustry = await WorkItem.find({
+        industry: allIndustries[i],
+      }).countDocuments();
+
+      const availableIndustryCount = {
+        title: allIndustries[i],
+        amount: availableIndustry,
+      };
+
+      industryTitleCount.push(availableIndustryCount);
+    }
+
     res.status(200).json({
       message: "Fetched industries successfully",
-      industries: allIndustries,
+      industries: industryTitleCount,
     });
   } catch (error) {
     if (!error.statusCode) {
@@ -281,7 +312,7 @@ exports.getService = async (req, res, next) => {
       service: { $regex: service, $options: "i" },
     })
       .sort(sort === "asc" ? { title: 1 } : { createdAt: -1 })
-      .select("title");
+      .select("-imageUrl -description");
 
     if (workItems < 1) {
       const error = new Error("No workitem found");
@@ -309,7 +340,7 @@ exports.getIndustry = async (req, res, next) => {
       industry: { $regex: industry, $options: "i" },
     })
       .sort(sort === "asc" ? { title: 1 } : { createdAt: -1 })
-      .select("title");
+      .select("-imageUrl -description");
 
     if (workItems < 1) {
       const error = new Error("No workitem found");
@@ -320,6 +351,85 @@ exports.getIndustry = async (req, res, next) => {
     res
       .status(200)
       .json({ message: "Fetched work items successfully", workItems });
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500;
+    }
+    next(error);
+  }
+};
+
+exports.getInfo = async (req, res, next) => {
+  const id = req.params.userId;
+
+  try {
+    const admin = await Admin.findById(id).select("-password");
+
+    if (!admin) {
+      const error = new Error("Not an admin");
+      error.statusCode = 401;
+      throw error;
+    }
+
+    res.status(201).json({ message: "User Information", admin });
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500;
+    }
+    next(error);
+  }
+};
+
+exports.updateInfo = async (req, res, next) => {
+  const id = req.params.userId;
+
+  const name = req.body.name;
+  const work_email = req.body.work_email;
+  const personal_email = req.body.personal_email;
+
+  try {
+    const admin = await Admin.findById(id);
+
+    if (!admin) {
+      const error = new Error("Not an admin");
+      error.statusCode = 401;
+      throw error;
+    }
+
+    admin.name = name;
+    admin.work_email = work_email;
+    admin.personal_email = personal_email;
+
+    await admin.save();
+
+    res.status(201).json({ message: "Information Updated Successfully" });
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500;
+    }
+    next(error);
+  }
+};
+
+exports.updatePassword = async (req, res, next) => {
+  const id = req.params.userId;
+
+  const password = req.body.password;
+
+  try {
+    const admin = await Admin.findById(id);
+
+    if (!admin) {
+      const error = new Error("Not an admin");
+      error.statusCode = 401;
+      throw error;
+    }
+
+    admin.password = password;
+
+    await admin.save();
+
+    res.status(201).json({ message: "Password Updated Successfully" });
   } catch (error) {
     if (!error.statusCode) {
       error.statusCode = 500;
