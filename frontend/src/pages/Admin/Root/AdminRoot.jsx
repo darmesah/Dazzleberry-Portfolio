@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 import logo from "./components/images/logo.png";
@@ -43,6 +43,8 @@ const AdminRoot = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location, dispatch]);
 
+  const modalBg = useSelector((state) => state.ui.logoutbg);
+
   return (
     <>
       <div className={classes.mobile}>
@@ -51,7 +53,7 @@ const AdminRoot = () => {
       </div>
       <main className={classes.container}>
         <SideBar />
-        <div className={classes.main}>
+        <div className={`${classes.main} ${modalBg ? classes.modalBg : ""}`}>
           <Outlet />
         </div>
       </main>

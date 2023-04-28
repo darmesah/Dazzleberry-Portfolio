@@ -102,7 +102,7 @@ const SubServIndItem = ({ _id, title, workDesc, createdAt }) => {
                 {showInfoEdit && (
                   <span className={classes.hover_icon}>edit</span>
                 )}
-                <Link to={`edit-workitem/${_id}`}>
+                <Link to={`../edit-workitem/${_id}`}>
                   <img
                     onMouseEnter={() => setShowInfoEdit(true)}
                     onMouseLeave={() => setShowInfoEdit(false)}

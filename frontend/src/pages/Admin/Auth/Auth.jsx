@@ -2,24 +2,31 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
+import logo from "./components/images/logo.png";
+
 import Input from "../../../components/FormElements/Input/Input";
 import useInput from "../../../hooks/use-input";
 import { authActions } from "../../../store/auth-slice";
 
+import classes from "./components/Auth.module.css";
+import Button from "../../../components/FormElements/Button/Button";
+
 const Auth = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [forgot, setForgot] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const isNotEmpty = (value) => value.trim() !== "";
+  const isNotEmpty = (value) => value.trim().length > 5;
+  const isEmail = (value) => value.includes("@");
 
   const {
-    value: name,
-    valueChangeHandler: nameChangeHandler,
-    isValid: nameIsValid,
-  } = useInput(isNotEmpty, "");
+    value: email,
+    valueChangeHandler: emailChangeHandler,
+    isValid: emailIsValid,
+  } = useInput(isEmail, "");
 
   const {
     value: password,
@@ -29,7 +36,7 @@ const Auth = () => {
 
   let formIsValid = false;
 
-  if (nameIsValid && passwordIsValid) {
+  if (emailIsValid && passwordIsValid) {
     formIsValid = true;
   }
 
@@ -46,7 +53,7 @@ const Auth = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              name,
+              email,
               password,
             }),
           }
@@ -64,7 +71,7 @@ const Auth = () => {
         const { token, userId } = data;
         const expiration = new Date();
         // expiration.setSeconds(expiration.getSeconds() + 30);
-        expiration.setHours(expiration.getHours() + 1);
+        expiration.setFullYear(expiration.getFullYear() + 1);
 
         const adminData = {
           token,
@@ -84,30 +91,45 @@ const Auth = () => {
   };
 
   return (
-    <main>
-      {error && <p>{error}</p>}
-      <h1>Admin Auth</h1>
-      <form onSubmit={formSubmitHandler}>
-        <Input
-          element="input"
-          label="Name"
-          name="name"
-          type="text"
-          value={name}
-          onChange={nameChangeHandler}
-        />
-        <Input
-          element="input"
-          label="Password"
-          name="password"
-          type="password"
-          value={password}
-          onChange={passwordChangeHandler}
-        />
-        <button disabled={!formIsValid || isLoading} type="submit">
-          Login
-        </button>
-      </form>
+    <main className={classes.container}>
+      <img src={logo} alt="logo" />
+      <div className={classes.auth_cont}>
+        {error && <p>{error}</p>}
+        <h1 className={classes.h1}>Log In</h1>
+        <form onSubmit={formSubmitHandler}>
+          <Input
+            element="input"
+            label="Email Address"
+            name="email"
+            type="email"
+            value={email}
+            onChange={emailChangeHandler}
+            className={classes.input}
+          />
+          <Input
+            element="input"
+            label="Password"
+            name="password"
+            type="password"
+            value={password}
+            onChange={passwordChangeHandler}
+            className={classes.input}
+          />
+          <Button disabled={!formIsValid || isLoading} type="submit">
+            LOG IN
+          </Button>
+        </form>
+        {!forgot && (
+          <p onClick={() => setForgot(true)} className={classes.p1}>
+            LOST YOUR PASSWORD?
+          </p>
+        )}
+        {forgot && (
+          <p className={classes.p2}>
+            Kindly contact <a href="mailto:dev@dazzleberry.com">admin</a>
+          </p>
+        )}
+      </div>
     </main>
   );
 };

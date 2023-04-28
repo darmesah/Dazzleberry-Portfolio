@@ -11,6 +11,7 @@ import Modal from "../../../../../components/UIElements/Modal/Modal";
 
 import classes from "./WorkItem.module.css";
 import { allActions } from "../../../../../store/all-slice";
+import ConfirmModal from "../../../../../components/UIElements/ConfirmModal/ConfirmModal";
 
 const WorkItem = ({ _id, title, workDesc, createdAt }) => {
   const day = new Date(createdAt).getDate();
@@ -75,17 +76,13 @@ const WorkItem = ({ _id, title, workDesc, createdAt }) => {
   return (
     <>
       <Modal onCancel={hideDeleteWarningHandler} show={showConfrimModal}>
-        <div
-          className={`${classes.confirm_cont} ${
-            showConfrimModal ? classes.show : classes.hide
-          }`}
-        >
-          <h2>Are you sure you want to delete?</h2>
-          <div className={classes.confirm_cont_flex}>
-            <div onClick={hideDeleteWarningHandler}>CANCEL</div>
-            <div onClick={confirmDeleteHandler}>DELETE</div>
-          </div>
-        </div>
+        <ConfirmModal
+          modalQuestion="Are you sure you want to delete this project?"
+          actionName="DELETE"
+          showConfrimModal={showConfrimModal}
+          hideConfirmModal={hideDeleteWarningHandler}
+          confirmAction={confirmDeleteHandler}
+        />
       </Modal>
       <li
         onMouseEnter={() => setShowOptions(true)}

@@ -9,8 +9,7 @@
 .header {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
-    padding-top: 35px;
+    padding: 20px 20px 10px 20px;
 }
 
 .header a img {
@@ -27,6 +26,10 @@
 }
 
 @media (min-width:768px) {
+    .header {
+        padding: 30px 20px 0 20px;
+    }
+
     .main_nav {
         display: block;
     }
@@ -38,14 +41,12 @@
 
 @media (min-width:1024px) {
     .header {
-        padding: 20px 50px;
-        padding-top: 35px;
+        padding: 30px 50px 0 50px;
     }
 }
 
 @media (min-width:1400px) {
     .header {
-        padding: 20px 100px;
-        padding-top: 35px;
+        padding: 30px 100px 0 100px;
     }
 }

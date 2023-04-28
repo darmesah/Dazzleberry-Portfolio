@@ -4,6 +4,9 @@ import useInput from "../../../../hooks/use-input";
 import { useDispatch, useSelector } from "react-redux";
 import { allActions } from "../../../../store/all-slice";
 
+import classes from "./Item.module.css";
+import Button from "../../../../components/FormElements/Button/Button";
+
 const Item = ({ items }) => {
   const { _id, title, workDesc, description } = items;
 
@@ -69,7 +72,9 @@ const Item = ({ items }) => {
   };
 
   return (
-    <main>
+    <main className={classes.container}>
+      <h1 className={classes.h1}>Edit Project</h1>
+      <p className={classes.p1}>Edit a project</p>
       <form onSubmit={updateHandler}>
         <Input
           element="input"
@@ -79,6 +84,7 @@ const Item = ({ items }) => {
           value={editTitle}
           placeholder="Enter Title"
           onChange={titleChangeHandler}
+          className={classes.input}
         />
         <Input
           element="textarea"
@@ -87,6 +93,7 @@ const Item = ({ items }) => {
           value={editWorkDesc}
           placeholder="Enter Main Description"
           onChange={workDescChangeHandler}
+          className={classes.textarea}
         />
         <Input
           element="textarea"
@@ -95,6 +102,7 @@ const Item = ({ items }) => {
           value={desc1}
           placeholder="Enter Description 1"
           onChange={desc1ChangeHandler}
+          className={classes.textarea}
         />
         <Input
           element="textarea"
@@ -103,6 +111,7 @@ const Item = ({ items }) => {
           value={desc2}
           placeholder="Enter Description 2"
           onChange={desc2ChangeHandler}
+          className={classes.textarea}
         />
         <Input
           element="textarea"
@@ -111,8 +120,9 @@ const Item = ({ items }) => {
           value={desc3}
           placeholder="Enter Description 3"
           onChange={desc3ChangeHandler}
+          className={classes.textarea}
         />
-        <button type="submit">Update Work Item</button>
+        <Button type="submit">UPDATE WORK</Button>
       </form>
     </main>
   );

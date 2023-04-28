@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialUIState = {
   searchBarVisible: false,
   loading: false,
+  logoutbg: false,
 };
 
 const uiSlice = createSlice({
@@ -17,6 +18,13 @@ const uiSlice = createSlice({
     },
     setLoading(state, action) {
       state.loading = !state.loading;
+    },
+    toggleModalbg(state, action) {
+      if (state.logoutbg) {
+        state.logoutbg = false;
+      } else {
+        state.logoutbg = true;
+      }
     },
   },
 });

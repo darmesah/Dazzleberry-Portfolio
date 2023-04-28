@@ -30,6 +30,10 @@
     color: #6e6e6e;
 }
 
+.header_1 a:hover {
+    color: black;
+}
+
 .header_2 {
     font-size: 0.83rem;
     font-family: 'JostMedium';

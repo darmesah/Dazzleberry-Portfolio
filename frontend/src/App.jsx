@@ -111,6 +111,10 @@ const App = () => {
           ],
         },
         {
+          path: "/admin/login",
+          element: !isAuth ? <Auth /> : <Navigate to="/admin" replace="true" />,
+        },
+        {
           path: "/admin",
           element: <AdminRoot />,
           children: [
@@ -122,14 +126,7 @@ const App = () => {
                 <Navigate to="/admin/login" replace="true" />
               ),
             },
-            {
-              path: "login",
-              element: !isAuth ? (
-                <Auth />
-              ) : (
-                <Navigate to="/admin" replace="true" />
-              ),
-            },
+
             {
               path: "add-workitem",
               element: isAuth ? (

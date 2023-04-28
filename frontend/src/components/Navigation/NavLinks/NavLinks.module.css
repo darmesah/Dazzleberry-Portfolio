@@ -17,6 +17,7 @@
     font-family: 'JostMedium';
 }
 
+.nav_links li a:hover,
 .nav_links li a.active {
     color: #000;
 }

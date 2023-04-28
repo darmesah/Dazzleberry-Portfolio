@@ -20,11 +20,11 @@ const adminCheck = async (req) => {
 };
 
 exports.login = async (req, res, next) => {
-  const name = req.body.name;
+  const email = req.body.email;
   const password = req.body.password;
 
   try {
-    const admin = await Admin.findOne({ name });
+    const admin = await Admin.findOne({ work_email: email });
 
     if (!admin) {
       const error = new Error("Invalid login credentials");
@@ -45,7 +45,7 @@ exports.login = async (req, res, next) => {
         role: admin.role,
       },
       process.env.SECRET_KEY,
-      { expiresIn: "1 week" }
+      { expiresIn: "1 year" }
     );
 
     res.status(200).json({
