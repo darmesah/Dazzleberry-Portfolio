@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import logo from "./components/images/logo.png";
@@ -92,7 +92,9 @@ const Auth = () => {
 
   return (
     <main className={classes.container}>
-      <img src={logo} alt="logo" />
+      <Link to="/">
+        <img src={logo} alt="logo" />
+      </Link>
       <div className={classes.auth_cont}>
         {error && <p>{error}</p>}
         <h1 className={classes.h1}>Log In</h1>

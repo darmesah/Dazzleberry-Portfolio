@@ -53,6 +53,10 @@
     font-size: 0.9rem;
 }
 
+.nav a:hover {
+    color: #002547;
+}
+
 .main p {
     text-align: center;
 }
@@ -129,11 +133,20 @@
 
 
     .nav ul {
-        justify-content: left;
+        justify-content: space-between;
     }
 
     .nav a {
         font-size: 1.3rem;
+    }
+
+    .view_all a {
+        color: #002547;
+        transition: all .2s linear;
+    }
+
+    .view_all a:hover {
+        color: #002547;
     }
 
     .talk {
@@ -146,12 +159,12 @@
 
     .talk a {
         text-decoration-thickness: 5px;
+        transition: linear .2s;
         font-size: 4.5rem;
     }
 
     .talk a:hover {
         color: #FF9A52;
-        transition: linear .2s;
     }
 }
 

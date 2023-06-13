@@ -7,13 +7,14 @@ import { industryList, serviceList } from "./components/data";
 import Button from "../../../components/FormElements/Button/Button";
 
 import classes from "./components/Add.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { allActions } from "../../../store/all-slice";
 
 const Add = () => {
   const [checkedServices, setCheckedServices] = useState([]);
   const [checkedIndustries, setCheckedIndustries] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -100,6 +101,8 @@ const Add = () => {
     const description = [desc1, desc2, desc3];
 
     const addWorkItem = async () => {
+      setIsLoading(true);
+
       try {
         const formData = new FormData();
         formData.append("title", title);
@@ -143,6 +146,8 @@ const Add = () => {
 
         navigate("/admin");
         dispatch(allActions.removeItem());
+
+        setIsLoading(false);
       } catch (error) {
         console.log(error.message);
       }
@@ -160,8 +165,10 @@ const Add = () => {
             <p className={classes.p1}>Create a new project.</p>
           </div>
           <div className={classes.can_pub}>
-            <button>CANCEL</button>
-            <Button disabled={!formIsValid} type="submit">
+            <button>
+              <Link to="/admin">CANCEL</Link>
+            </button>
+            <Button disabled={!formIsValid || isLoading} type="submit">
               PUBLISH
             </Button>
           </div>

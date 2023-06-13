@@ -1,4 +1,4 @@
-import { useRouteError } from "react-router-dom";
+import { Link, useRouteError } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import MainNavigation from "../../components/Navigation/MainNavigation/MainNavigation";
 import classes from "./components/Error.module.css";
@@ -21,6 +21,9 @@ const Error = () => {
       <main className={classes.container}>
         <h1>{title}</h1>
         <p>{message}</p>
+        <p className={classes.back}>
+          <Link to="/">BACK HOME</Link>
+        </p>
       </main>
       <Footer />
     </>

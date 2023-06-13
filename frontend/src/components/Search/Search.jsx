@@ -61,6 +61,7 @@ const Search = () => {
             />
             <button disabled={!enteredTextIsValid} type="submit">
               <img src={search} alt="search" />
+              <span className={classes.search1}>Search</span>
             </button>
           </form>
           {textHasError && (

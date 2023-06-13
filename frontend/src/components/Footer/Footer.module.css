@@ -8,6 +8,11 @@
 .container a {
     color: #949494;
     text-decoration: none;
+    transition: linear .2s;
+}
+
+.container a:hover {
+    color: #002547;
 }
 
 @media (min-width:768px) {

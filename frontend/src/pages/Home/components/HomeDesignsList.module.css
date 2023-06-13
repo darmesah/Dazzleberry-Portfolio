@@ -52,6 +52,11 @@
 
     .container_d img {
         width: 100%;
+        transition: linear .4s;
+    }
+
+    .container_d img:hover {
+        transform: scale(1.1);
     }
 
     .container_d .designitem_d h2 {
@@ -64,6 +69,7 @@
     .container_d .designitem_d {
         padding-bottom: 40px;
         flex-basis: 49%;
+        overflow: hidden;
     }
 
     .container_d .designitem_d:nth-child(1) img,
@@ -83,6 +89,7 @@
 
     .designitem_d_c {
         flex-basis: 47.8%;
+        overflow: hidden;
     }
 
     .designitem_d_c:nth-child(odd) {

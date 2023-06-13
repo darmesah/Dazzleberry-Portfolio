@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
 const cors = require("cors");
+const fs = require("fs");
 require("dotenv").config();
 
 const MONGODB_URI = process.env.MONGODB_URL;
@@ -44,18 +45,24 @@ app.use("/api/admin", adminRoutes);
 app.use("/api", workItemRoutes);
 
 app.use((error, req, res, next) => {
-  console.log(error);
+  if (req.file) {
+    fs.unlink(req.file.path, (err) => {
+      console.log(err);
+    });
+  }
   const status = error.statusCode || 500;
   const message = error.message;
   const data = error.data;
   res.status(status).json({ message, data });
 });
 
+const PORT = 8080;
+
 mongoose.set("strictQuery", true);
 mongoose
   .connect(MONGODB_URI)
   .then((result) => {
-    app.listen(8080);
-    console.log("Server started");
+    app.listen(PORT);
+    console.log("Server started at " + PORT);
   })
   .catch((err) => console.log(err));

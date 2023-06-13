@@ -1,6 +1,6 @@
 .all_cont h4 {
     font-family: 'JostSemiBold';
-    font-size: 1.2rem;
+    font-size: 1.7rem;
     margin-bottom: 10px;
 }
 
@@ -16,6 +16,14 @@
 
 .bold {
     font-family: 'JostBold';
+}
+
+.total {
+    font-family: 'JostRegular';
+    font-size: .85rem;
+    position: relative;
+    top: -10px;
+    left: -3px;
 }
 
 @media (min-width:1024px) {

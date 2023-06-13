@@ -23,6 +23,11 @@
 
 }
 
+.can_pub a {
+    color: #002547;
+    text-decoration: none;
+}
+
 .can_pub button {
     font-family: 'JostMedium';
     padding: 10px 15px;

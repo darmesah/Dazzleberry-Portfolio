@@ -89,6 +89,10 @@
     color: red;
 }
 
+.container button span {
+    display: none;
+}
+
 
 
 @media (min-width:768px) {
@@ -146,6 +150,17 @@
 
     .container input {
         font-size: 1.5rem;
+    }
+
+    .container button img {
+        display: none;
+    }
+
+    .container button span {
+        display: block;
+        font-size: 1.1rem;
+        color: #000;
+        font-family: "JostMedium";
     }
 }
 

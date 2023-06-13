@@ -65,6 +65,7 @@ const WorkList = ({ inverse }) => {
         const data = await response.json();
         setTotal(data.totalWorkItems);
         dispatch(allActions.setWorkItems(data.workItems));
+        dispatch(allActions.setTotal(data.totalWorkItems));
         setIsLoading(false);
       } catch (error) {
         setError(error);
@@ -73,7 +74,7 @@ const WorkList = ({ inverse }) => {
 
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sort]);
+  }, [sort, dispatch]);
 
   const loadMoreHandler = () => {
     const fetchData = async () => {

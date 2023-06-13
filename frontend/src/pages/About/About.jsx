@@ -1,4 +1,4 @@
-import classes from './components/About.module.css';
+import classes from "./components/About.module.css";
 
 const About = () => {
   return (
@@ -6,11 +6,19 @@ const About = () => {
       <div>
         <h1 className={classes.main_h1}>About Dazzleberry</h1>
         <p>
-          Dazzleberry Designs is a global digital art services company providing
-          unlimited, high-quality design, videos, illustrations and print
-          services to hundreds of businesses. Founded in Lagos, Nigeria by
-          Precious Ikpen, Dazzleberry was created to deliver efficient,
-          affordable, and flexible creative content to any business.
+          <p className={classes.p2}>
+            Dazzleberry is a multi-disciplinary, independent design studio.
+          </p>
+          <p className={classes.p2}>
+            Our work encompasses graphics and identity, strategy and
+            positioning, products and packaging, exhibitions and installations,
+            websites and digital experiences, advertising and communications,
+            data visualizations and typefaces, sound and motion.{" "}
+          </p>
+          <p className={classes.p2}>
+            Dazzleberry was created to deliver efficient, affordable, and
+            flexible creative solutions to any business.
+          </p>
         </p>
       </div>
       <div>

@@ -25,6 +25,14 @@
     color: #FF9A52;
 }
 
+.p2 {
+    padding-bottom: 8px !important;
+}
+
+.p2:last-child {
+    padding-bottom: 0px !important;
+}
+
 @media (min-width:768px) {
     .container {
         width: 60%;

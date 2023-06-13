@@ -40,10 +40,13 @@ const Home = () => {
             <li>
               <Link to="work/industry">BY INDUSTRY</Link>
             </li>
+            <li>
+              <Link to="work/service">BY SERVICE</Link>
+            </li>
           </ul>
         </div>
         <HomeDesignList />
-        <p>
+        <p className={classes.view_all}>
           <Link to="work">VIEW ALL PROJECTS</Link>
         </p>
         <div className={classes.talk}>

@@ -1,4 +1,4 @@
-import classes from './components/Contact.module.css';
+import classes from "./components/Contact.module.css";
 
 const Contact = () => {
   return (
@@ -16,7 +16,7 @@ const Contact = () => {
         <h2>Office</h2>
         <p>
           Monday through Friday <br />
-          8AM - 6PM <br />
+          9AM - 5PM <br />
           27 Ijaoye street, <br />
           Jibowu, Lagos.
         </p>

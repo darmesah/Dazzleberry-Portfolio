@@ -19,11 +19,15 @@ const All = () => {
   };
 
   const sort = useSelector((state) => state.all.sort);
+  const total = useSelector((state) => state.all.total);
+  console.log(total);
 
   return (
     <>
       <div className={classes.all_cont}>
-        <h4>All Projects</h4>
+        <h4>
+          All Projects <span className={classes.total}>{total}</span>
+        </h4>
         <div className={classes.sort_cont}>
           <p onClick={sortChro} className={!sort ? classes.bold : ""}>
             CHRONOLOGICAL

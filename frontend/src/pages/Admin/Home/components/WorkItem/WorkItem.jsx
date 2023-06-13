@@ -30,7 +30,9 @@ const WorkItem = ({ _id, title, workDesc, createdAt }) => {
   const [showConfrimModal, setShowConfrimModal] = useState(false);
 
   const copyURLButton = () => {
-    navigator.clipboard.writeText(`http://localhost:3000/work-item/${_id}`);
+    navigator.clipboard.writeText(
+      `https://dazzleberrydesigns.com/work-item/${_id}`
+    );
 
     setCopyMsg("copied");
   };

@@ -19,6 +19,7 @@ const AdminRoot = () => {
     const adminData = localStorage.getItem("adminData");
 
     if (!adminData) {
+      // navigate("/admin/login");
       dispatch(authActions.logout());
       return;
     }
