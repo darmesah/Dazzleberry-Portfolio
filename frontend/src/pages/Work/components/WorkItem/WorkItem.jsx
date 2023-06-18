@@ -7,11 +7,13 @@ const WorkItem = ({ title, image }) => {
     <li className={`${classes.list_item}`}>
       <Link to={title}>
         <h5>{title}</h5>
-        <img
-          src={`${process.env.REACT_APP_BACKEND_IMAGES}/${image}`}
-          alt={title}
-          loading="lazy"
-        />
+        <div className={classes.img}>
+          <img
+            src={`${process.env.REACT_APP_BACKEND_IMAGES}/${image}`}
+            alt={title}
+            loading="lazy"
+          />
+        </div>
       </Link>
     </li>
   );

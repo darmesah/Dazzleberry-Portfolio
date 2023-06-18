@@ -4,7 +4,7 @@ exports.getWorkItems = async (req, res, next) => {
   const keyword = req.query.keyword;
   const sort = req.query.sort;
   const currentPage = req.query.page || 1;
-  const perPage = 2;
+  const perPage = 20;
 
   try {
     if (keyword) {

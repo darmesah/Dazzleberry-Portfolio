@@ -24,8 +24,16 @@
     text-decoration: none;
 }
 
-.list_item img {
+.img {
     width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.img img {
+    width: 100%;
+    object-position: center;
+    object-fit: cover;
 }
 
 @media (min-width:768px) {
