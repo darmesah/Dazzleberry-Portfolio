@@ -72,7 +72,9 @@ exports.getWorkItem = async (req, res, next) => {
       throw error;
     }
 
-    const allWorkItem = await WorkItem.find().select("-imageUrl -description");
+    const allWorkItem = await WorkItem.find()
+      .sort({ createdAt: -1 })
+      .select("-imageUrl -description");
     const workItemId = allWorkItem.findIndex((item) => item.id == workItem.id);
     const nextWorkItemId =
       allWorkItem.length - 1 === workItemId ? 0 : workItemId + 1;
