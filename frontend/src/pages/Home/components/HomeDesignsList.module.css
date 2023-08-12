@@ -24,6 +24,12 @@
     display: none;
 }
 
+.container a,
+.container_d a {
+    text-decoration: none;
+    color: black;
+}
+
 @media (min-width:768px) {
     .container {
         flex-direction: row;
